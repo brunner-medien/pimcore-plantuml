@@ -1,4 +1,4 @@
-# PLantUML class diagram generation based on pimcore class definition
+# PlantUML class diagram generation based on pimcore class definition
 
 ## Requirements
 * Pimcore >= 6
