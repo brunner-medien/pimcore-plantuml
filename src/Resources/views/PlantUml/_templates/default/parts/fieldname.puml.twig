@@ -1,0 +1,7 @@
+{%- if translation == 'none' or not(field.title) %}
+    {{- '**'  ~ field.name ~ '**' }}
+{%- else %}
+    {{- '**'  ~ ( field.title | trans([], 'admin', translation) ) ~ '**' }}
+    {{- ' / ' }}
+    {{- field.name }}
+{%- endif -%}

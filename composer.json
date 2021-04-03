@@ -1,0 +1,35 @@
+{
+  "name" : "brunner-medien/pimcore-plantuml",
+  "type" : "pimcore-bundle",
+  "license": "lgpl-3.0",
+  "description" : "PlantUML class diagram generation based on pimcore class definitions",
+  "keywords" : [
+    "pimcore",
+    "plantuml"
+  ],
+  "homepage" : "https://github.com/brunner-medien/pimcore-plantuml",
+  "authors" : [{
+    "name" : "Brunner Medien AG Michael Reufer",
+    "email" : "m.reufer@bag.ch",
+    "homepage" : "https://www.bag.ch/",
+    "role" : "Developer"
+  }
+  ],
+  "autoload": {
+    "psr-4": {
+      "PlantUmlBundle\\": "src/"
+    }
+  },
+  "extra": {
+    "pimcore": {
+      "bundles": [
+        "PlantUmlBundle\\PlantUmlBundle"
+      ]
+    }
+  },
+  "require": {
+    "symfony/symfony": "^4|^5",
+    "pimcore/pimcore": "^6",
+    "php" : "^7.3"
+  }
+}

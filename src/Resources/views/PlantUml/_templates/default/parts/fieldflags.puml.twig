@@ -1,0 +1,9 @@
+{#- required  #}
+{%- if field.required %}
+    {{- '<&star>' | raw }}
+{%- endif %}
+
+{#- localized  #}
+{%- if (field.localized) %}
+    {{- '<&globe>' | raw }}
+{%- endif -%}

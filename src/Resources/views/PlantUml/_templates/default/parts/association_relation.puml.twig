@@ -1,0 +1,59 @@
+{{- relation.localClass.namespaceName }}
+
+{#- local multiplicity: #}
+{{- ( ' "' ~ relation.localMinMultiplicity ~ '..' ~ ( relation.localMaxMultiplicity ?: '*' ) ~ '"' ) | raw }}
+
+{#- connector: #}
+{%- if relation.type == 'COMPOSITION' %}
+    {{- ' *--' }}
+{%- else %}
+    {{- ' ---' }}
+{%- endif %}
+{%- if relation.foreignClass.isAssociationClass %}
+    {#- one dash more for a longer line, probably muliple classes connected: #}
+    {{- '-' }}
+{%- endif %}
+
+{#- foreign multiplicity: #}
+{{- ( ' "' ~ relation.foreignMinMultiplicity ~ '..' ~ ( relation.foreignMaxMultiplicity ?: '*' ) ~ '"' ) | raw }}
+
+{#- standard association: #}
+{{- ' ' ~ relation.foreignClass.namespaceName }}
+
+{#- relation label: #}
+{%- if translation == 'none' or not(relation.title) %}
+    {{- ( ' : ' ~ relation.name ) | raw }}
+{%- else %}
+    {{- ( ' : ' ~ relation.title ) | raw }}
+{%- endif %}
+{%- if relation.foreignName %}
+    {%- if translation == 'none' or not(relation.foreignTitle) %}
+        {{- ( ' (' ~ relation.foreignName ~ ')' ) | raw }}
+    {%- else %}
+        {{- ( ' (' ~ relation.foreignTitle ~ ')' ) | raw }}
+    {%- endif %}
+{%- endif %}
+
+{#- relations may indicate localizations (in the case of classification stores) #}
+{{- relation.localized ? ' 🌍' : '' }}
+
+{#- direction indicator, always left to right #}
+{{- ' >' | raw }}
+
+{{- '\n' | raw }}
+
+{#- relation class: #}
+{%- if relation.relationClass %}
+
+    {#- association class: #}
+    {{- ( '(' ~ relation.localClass.namespaceName ~ ',' ~ relation.foreignClass.namespaceName ~ ')' ) | raw }}
+
+    {#- connector: #}
+    {{- ' --' }}
+
+    {#- association class: #}
+    {{- ' ' ~ relation.relationClass.namespaceName }}
+
+    {{- '\n' | raw }}
+
+{%- endif %}

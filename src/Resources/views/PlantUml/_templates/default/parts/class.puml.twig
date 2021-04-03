@@ -1,0 +1,37 @@
+{%- if class.isAssociationClass %}
+
+    {{- 'diamond ' ~ class.namespaceName  }}
+
+{%- else %}
+
+    {{- 'class ' }}
+    {%- include templatePath ~ '/parts/classname.puml.twig' with {'class': class} %}
+    {{- ' as ' ~ class.namespaceName }}
+    {{- (class.stereotype ? (' <<' ~ class.stereotype ~ '>>') : '') | raw }}
+    {{- ' {' }}
+    {{- '\n' }}
+
+    {%- if config.fieldMode != 'none' %}
+        {%-  for field in class.fields %}
+            {%- if field.isRelation %}
+                {%- if (classes[field.relation.foreignClass.namespaceName] is not defined) or (config.fieldMode == 'all') %}
+                    {%- if (field.relation.foreignClass.isAssociationClass) %}
+                        {%- include templatePath ~ '/parts/field_relation_association.puml.twig' with {'field': field} %}
+                    {%- else %}
+                        {%- include templatePath ~ '/parts/field_relation.puml.twig' with {'field': field} %}
+                    {%- endif %}
+                {%- endif %}
+            {%- else %}
+                {%- if not(field.hidden and config.ignoreHiddenFields) %}
+                    {%- include templatePath ~ '/parts/field_standard.puml.twig' with {'field': field} %}
+                {%- endif  %}
+            {%- endif %}
+        {%- endfor %}
+    {%- endif %}
+
+    {{- '}' }}
+    {{- '\n' }}
+
+{%- endif %}
+
+{{- '\n' }}

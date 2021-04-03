@@ -1,0 +1,33 @@
+services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    PlantUmlBundle\Service\ConfigurationServiceInterface:
+        alias: 'PlantUmlBundle\Service\ConfigurationService'
+        public: true
+
+    PlantUmlBundle\Service\ConfigurationService: ~
+
+    PlantUmlBundle\Service\GeneratorServiceInterface:
+        alias: 'PlantUmlBundle\Service\GeneratorService'
+        public: true
+
+    PlantUmlBundle\Service\GeneratorService: ~
+
+    PlantUmlBundle\Registry\RegistryInterface:
+        alias: 'PlantUmlBundle\Registry\Registry'
+
+    PlantUmlBundle\Registry\Registry: ~
+
+    PlantUmlBundle\Generator\FactoryInterface:
+        alias: 'PlantUmlBundle\Generator\GeneratorFactory'
+
+    PlantUmlBundle\Generator\GeneratorFactory: ~
+
+    PlantUmlBundle\Model\FactoryInterface:
+        alias: 'PlantUmlBundle\Model\ModelFactory'
+
+    PlantUmlBundle\Model\ModelFactory: ~

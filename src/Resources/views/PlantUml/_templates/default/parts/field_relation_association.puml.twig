@@ -1,0 +1,20 @@
+{#- indent #}
+{{- '    ' }}
+
+{#- field name #}
+{%- include templatePath ~ '/parts/fieldname.puml.twig' with {'field': field} %}
+{{- ':' }}
+
+{#- foreign class is an association class - makes no sense to display its name #}
+{{- ' Multiple' }}
+
+{#- multiplicity #}
+{{- ' ' }}
+{%- include templatePath ~ '/parts/multiplicity.puml.twig' with {'field': field} %}
+
+{#- flags #}
+{{- ' ' }}
+{%- include templatePath ~ '/parts/fieldflags.puml.twig' with {'field': field} %}
+
+{#- line break #}
+{{- '\n' }}

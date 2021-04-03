@@ -1,0 +1,44 @@
+@startuml
+
+hide empty attributes
+hide empty methods
+hide circle
+
+skinparam shadowing false
+skinparam classFontStyle Bold
+skinparam ActivityBackgroundColor Silver
+skinparam ActivityBorderColor DimGray
+
+skinparam class {
+    BackgroundColor Cornsilk
+    ArrowColor DimGray
+    BorderThickness 1
+    BorderColor DimGray
+    BackgroundColor<<block>> Silver
+    BackgroundColor<<objectbrick>> LightPink
+    BackgroundColor<<fieldcollection>> LightPink
+    BackgroundColor<<classification>> LightPink
+    BackgroundColor<<asset>> PowderBlue
+    BackgroundColor<<document>> PaleGreen
+}
+
+title "{{ config.title }}"
+
+{% for class in classes -%}
+    {% include templatePath ~ '/parts/class.puml.twig' with {'class': class} -%}
+{% endfor -%}
+
+{% for class in classes -%}
+    {% for realizateClass in class.realizeClasses -%}
+        {% include templatePath ~ '/parts/association_realization.puml.twig' with {'class': class} -%}
+    {% endfor -%}
+    {% if class.generalizeClass -%}
+        {% include templatePath ~ '/parts/association_generalization.puml.twig' with {'class': class} -%}
+    {% endif -%}
+{% endfor -%}
+
+{% for relation in relations -%}
+    {% include templatePath ~ '/parts/association_relation.puml.twig' with {'relation': relation} -%}
+{% endfor %}
+
+@enduml

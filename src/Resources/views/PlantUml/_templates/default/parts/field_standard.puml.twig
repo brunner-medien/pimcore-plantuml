@@ -1,0 +1,28 @@
+{#- indent #}
+{{- '    ' }}
+
+{#- field name #}
+{%- include templatePath ~ '/parts/fieldname.puml.twig' with {'field': field} %}
+{{- ':' }}
+
+{#- data type  #}
+{{- ' ' }}
+{{- field.dataType -}}
+
+{#- field type  #}
+{%- if (field.dataType != field.fieldType) %}
+    {{- ( field.dataType ? ' / ' : ' ' ) ~ field.fieldType }}
+{%- endif %}
+
+{#- units  #}
+{%- if (field.hasUnits) %}
+    {{- ' ' }}
+    {{- '[' ~ field.units | join('/') ~ ']' }}
+{%- endif %}
+
+{#- flags #}
+{{- ' ' }}
+{%- include templatePath ~ '/parts/fieldflags.puml.twig' with {'field': field} %}
+
+{#- line break #}
+{{- '\n' }}
