@@ -7,7 +7,7 @@ interface RelationInterface extends ModelInterface
 
     const TYPE_ASSOCIATION = 'ASSOCIATION';
 
-    const TYPE_COMPOSIION = 'COMPOSITION';
+    const TYPE_COMPOSITION = 'COMPOSITION';
 
     /**
      * @return string

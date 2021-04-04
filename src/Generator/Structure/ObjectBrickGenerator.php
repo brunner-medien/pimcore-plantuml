@@ -37,11 +37,11 @@ class ObjectBrickGenerator extends AbstractGenerator implements GeneratorInterfa
             $relation->setLocalMinMultiplicity(1);
             $relation->setLocalMaxMultiplicity(1);
 
-            // maxItens counts for the total amount of different object bricks -
+            // maxItems counts for the total amount of different object bricks -
             // if we have a single allowed item it is 1:
             $maxItems = sizeof($allowedClasses) === 1 ? 1 : ($this->definition->getMaxItems() ?: null);
             $relation->setForeignMaxMultiplicity($maxItems);
-            $relation->setType(RelationInterface::TYPE_COMPOSIION);
+            $relation->setType(RelationInterface::TYPE_COMPOSITION);
 
             $this->processAllowedClasses($namespace, $relation, $allowedClasses, $active);
         }

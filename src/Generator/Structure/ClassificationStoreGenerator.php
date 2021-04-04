@@ -54,7 +54,7 @@ class ClassificationStoreGenerator extends AbstractGenerator implements Generato
             $relation->setLocalMaxMultiplicity(1);
 
             $relation->setForeignMaxMultiplicity(sizeof($allowedClasses) === 1 ? 1 : null);
-            $relation->setType(RelationInterface::TYPE_COMPOSIION);
+            $relation->setType(RelationInterface::TYPE_COMPOSITION);
             $relation->setLocalized($this->definition->isLocalized());
 
             $this->processAllowedClasses($namespace, $relation, $allowedClasses, $active);

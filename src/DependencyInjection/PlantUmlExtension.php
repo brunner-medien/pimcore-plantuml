@@ -23,8 +23,8 @@ class PlantUmlExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        $configManagerDefinition = $container->getDefinition('PlantUmlBundle\Service\ConfigurationService');
-        $configManagerDefinition->addMethodCall('setConfig', [$config]);
+        $serviceDefinition = $container->getDefinition('PlantUmlBundle\Service\ConfigurationService');
+        $serviceDefinition->addMethodCall('setConfig', [$config]);
     }
 
 }

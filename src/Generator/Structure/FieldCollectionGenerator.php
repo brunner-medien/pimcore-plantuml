@@ -40,7 +40,7 @@ class FieldCollectionGenerator extends AbstractGenerator implements GeneratorInt
             $relation->setLocalMinMultiplicity(1);
             $relation->setLocalMaxMultiplicity(1);
             $relation->setForeignMaxMultiplicity($this->definition->getMaxItems() ?: null);
-            $relation->setType(RelationInterface::TYPE_COMPOSIION);
+            $relation->setType(RelationInterface::TYPE_COMPOSITION);
 
             $this->processAllowedClasses($namespace, $relation, $allowedClasses, $active);
         }
