@@ -11,34 +11,29 @@ class GeneratorFactory implements FactoryInterface
      * @var string[]
      */
     protected $classMap = [
-        'Pimcore\\Model\\DataObject\\ClassDefinition' => 'Root\\Class',
-        'Pimcore\\Model\\DataObject\\Fieldcollection\\Definition' => 'Root\\FieldCollection',
-        'Pimcore\\Model\\DataObject\\Classificationstore\\GroupConfig' => 'Root\\ClassificationGroup',
-        'Pimcore\\Model\\DataObject\\Objectbrick\\Definition' => 'Root\\ObjectBrick',
-
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\QuantityValue' => 'Field\\QuantityValue',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\InputQuantityValue' => 'Field\\QuantityValue',
-
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Select' => 'ValueList\\Select',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Multiselect' => 'ValueList\\MultiSelect',
-
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Image' => 'Asset\\Image',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Hotspotimage' => 'Asset\\Image',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ImageGallery' => 'Asset\\ImageGallery',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Video' => 'Asset\\Video',
-
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ManyToManyObjectRelation' => 'Relation\\ManyToMany',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ManyToManyRelation' => 'Relation\\ManyToMany',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ManyToOneRelation' => 'Relation\\ManyToOne',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\AdvancedManyToManyRelation' => 'Relation\\AdvancedManyToMany',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\AdvancedManyToManyObjectRelation' => 'Relation\\AdvancedManyToMany',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ReverseManyToManyObjectRelation' => 'Relation\\ReverseManyToMany',
-
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Localizedfields' => 'Structure\\Localized',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Block' => 'Structure\\Block',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Fieldcollections' => 'Structure\\FieldCollection',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Classificationstore' => 'Structure\\ClassificationStore',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Objectbricks' => 'Structure\\ObjectBrick',
+        'Pimcore\\Model\\DataObject\\ClassDefinition' => 'PlantUmlBundle\\Generator\\Root\\ClassGenerator',
+        'Pimcore\\Model\\DataObject\\Fieldcollection\\Definition' => 'PlantUmlBundle\\Generator\\Root\\FieldCollectionGenerator',
+        'Pimcore\\Model\\DataObject\\Classificationstore\\GroupConfig' => 'PlantUmlBundle\\Generator\\Root\\ClassificationGroupGenerator',
+        'Pimcore\\Model\\DataObject\\Objectbrick\\Definition' => 'PlantUmlBundle\\Generator\\Root\\ObjectBrickGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\QuantityValue' => 'PlantUmlBundle\\Generator\\Field\\QuantityValueGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\InputQuantityValue' => 'PlantUmlBundle\\Generator\\Field\\QuantityValueGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Select' => 'PlantUmlBundle\\Generator\\ValueList\\SelectGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Multiselect' => 'PlantUmlBundle\\Generator\\ValueList\\MultiSelectGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Image' => 'PlantUmlBundle\\Generator\\Asset\\ImageGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Hotspotimage' => 'PlantUmlBundle\\Generator\\Asset\\ImageGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ImageGallery' => 'PlantUmlBundle\\Generator\\Asset\\ImageGalleryGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Video' => 'PlantUmlBundle\\Generator\\Asset\\VideoGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ManyToManyObjectRelation' => 'PlantUmlBundle\\Generator\\Relation\\ManyToManyGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ManyToManyRelation' => 'PlantUmlBundle\\Generator\\Relation\\ManyToManyGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ManyToOneRelation' => 'PlantUmlBundle\\Generator\\Relation\\ManyToOneGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\AdvancedManyToManyRelation' => 'PlantUmlBundle\\Generator\\Relation\\AdvancedManyToManyGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\AdvancedManyToManyObjectRelation' => 'PlantUmlBundle\\Generator\\Relation\\AdvancedManyToManyGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ReverseManyToManyObjectRelation' => 'PlantUmlBundle\\Generator\\Relation\\ReverseManyToManyGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Localizedfields' => 'PlantUmlBundle\\Generator\\Structure\\LocalizedGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Block' => 'PlantUmlBundle\\Generator\\Structure\\BlockGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Fieldcollections' => 'PlantUmlBundle\\Generator\\Structure\\FieldCollectionGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Classificationstore' => 'PlantUmlBundle\\Generator\\Structure\\ClassificationStoreGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Objectbricks' => 'PlantUmlBundle\\Generator\\Structure\\ObjectBrickGenerator',
     ];
 
     /**
@@ -63,14 +58,13 @@ class GeneratorFactory implements FactoryInterface
         $generator = null;
         $classname = get_class($definition);
 
-        $generatorName = 'Field\\Default';
+        $generatorName = $this->getDefaultGeneratorName();
         if (array_key_exists($classname, $this->classMap)) {
             $generatorName = $this->classMap[$classname];
         }
 
-        $generatorClass = 'PlantUmlBundle\\Generator\\' . $generatorName . 'Generator';
         /* @var GeneratorInterface $generator */
-        $generator = new $generatorClass();
+        $generator = new $generatorName();
 
         // setter dependency injection
         $generator->setDefinition($definition);
@@ -78,6 +72,14 @@ class GeneratorFactory implements FactoryInterface
         $generator->setFactory($this);
 
         return $generator;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getDefaultGeneratorName()
+    {
+        return 'PlantUmlBundle\\Generator\\Field\\DefaultGenerator';
     }
 
 }
