@@ -7,6 +7,7 @@ use PlantUmlBundle\Generator\GeneratorInterface;
 use PlantUmlBundle\Generator\Traits\FieldDefinitionTrait;
 use Pimcore\Model\DataObject\ClassDefinition\Data\Block;
 use PlantUmlBundle\Model\ModelInterface;
+use PlantUmlBundle\Model\RelationInterface;
 
 /**
  * @property Block $definition
@@ -38,6 +39,7 @@ class BlockGenerator extends AbstractGenerator implements GeneratorInterface
         $relation = $this->generateRelation($namespace);
         $relation->setForeignMaxMultiplicity($this->definition->getMaxItems() ?: null);
         $relation->setForeignClass($class);
+        $relation->setType(RelationInterface::TYPE_COMPOSITION);
     }
 
 }

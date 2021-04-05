@@ -21,6 +21,7 @@ class ImageGalleryGenerator extends AbstractAssetGenerator implements GeneratorI
         $class = $this->generateClass([ModelInterface::CLASS_ASSET], ModelInterface::CLASS_ASSET_IMAGE, $active);
 
         $relation = $this->generateRelation($namespace);
+        $relation->setForeignMinMultiplicity($this->definition->getMandatory() ? 1 : 0);
         $relation->setForeignMaxMultiplicity(null);
         $relation->setForeignClass($class);
 
