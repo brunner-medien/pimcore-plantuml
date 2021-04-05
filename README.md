@@ -99,7 +99,7 @@ This basic example shows some of PlantUmlBundle's features:
 * The "images" is a "0..*" relation of Pimcore field type image gallery.
 * Both "heroImage" and "images" relate to "Image", which also generalizes "Asset".
 * Product's and Color's properties "name" are localized fields, indicated by the globe symbol.
-* Procut's "length" and "width" properties are quantity values, where [m,cm,mm] are valid units.
+* Product's "length" and "width" properties are quantity values, where [m,cm,mm] are valid units.
 
 ![Sample class diagram](doc/sample.svg "Sample class diagram")
 
