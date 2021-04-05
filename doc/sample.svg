@@ -16,11 +16,11 @@ link Asset\Document to Asset--><path codeLine="78" d="M110.63,696.7306 C125.06,7
 link Object\Product to Object\Color--><path codeLine="79" d="M368.91,131.8306 C390.18,155.0906 415.35,183.3506 437,209.6406 C481.14,263.2506 529.35,329.2806 553.81,363.3706 " fill="none" id="Object\Product-Object\Color" style="stroke:#696969;stroke-width:1.0;"/><polygon fill="#000000" points="503.1201,251.7235,499.7723,242.8216,495.1793,246.4894,503.1201,251.7235" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="35" x="509" y="253.1357">colors</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="353.8698" y="153.2846">0..*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="527.0561" y="352.7787">0..*</text><!--MD5=[2c823bcf8cc50a90399521fc13a42fe1]
 link Object\Product to Object\Category--><path codeLine="80" d="M332.57,131.9206 C346.66,198.9806 371.02,314.8906 381.26,363.5806 " fill="none" id="Object\Product-Object\Category" style="stroke:#696969;stroke-width:1.0;"/><polygon fill="#000000" points="370.0284,252.7095,371.0441,243.2533,365.2919,244.4623,370.0284,252.7095" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="50" x="378" y="253.1357">category</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="312.6466" y="153.3867">0..*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="355.0299" y="352.6507">0..1</text><!--MD5=[1deaad7475d41806062c37e36577c0df]
 link Object\Product to Asset\Image--><path codeLine="81" d="M220.56,129.1406 C189.24,149.2606 158.43,175.9706 141,209.6406 C125.47,239.6406 126.97,254.9206 141,285.6406 C160.15,327.5706 206.39,358.7306 234.37,374.5206 " fill="none" id="Object\Product-Asset\Image" style="stroke:#696969;stroke-width:1.0;"/><polygon fill="#000000" points="146.281,252.8085,148.707,243.6126,142.8384,243.9429,146.281,252.8085" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="155" y="253.1357">heroImage</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="193.0726" y="146.4345">0..*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="204.5931" y="367.2663">1..1</text><!--MD5=[1deaad7475d41806062c37e36577c0df]
-link Object\Product to Asset\Image--><path codeLine="82" d="M305.41,131.6806 C298.08,155.1506 289.82,183.6306 284,209.6406 C271.34,266.2106 262.77,334.3106 259.07,366.9106 " fill="none" id="Object\Product-Asset\Image-1" style="stroke:#696969;stroke-width:1.0;"/><polygon fill="#000000" points="288.0336,252.7221,292.6654,244.4156,286.8983,243.2796,288.0336,252.7221" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="42" x="298" y="253.1357">images</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="281.6708" y="153.4837">0..*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="236.7406" y="356.1373">0..*</text><!--MD5=[c5b81f40acb76c6bc1aac1b4c2cb7ee7]
-link Object\Product to apoint1085--><path d="M220.74,120.0106 C197.75,131.3806 174.41,145.2706 155,161.6406 C34.07,263.6306 9.81,483.5606 8.1,500.5906 " fill="none" id="Object\Product-apoint1085" style="stroke:#696969;stroke-width:1.0;"/><polygon fill="#000000" points="56.5612,329.1813,63.5386,322.7186,58.4074,319.8516,56.5612,329.1813" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="68" y="330.1357">assets</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="192.917" y="119.7142">0..*</text><!--MD5=[59d8611da65d1449a92f2c473fe3abaf]
-link apoint1085 to Object\Product\Assets\Association--><path d="M8.09,504.8906 C9.03,517.2306 17.23,618.3706 40,696.6406 C48.09,724.4606 63.17,755.5506 70.21,769.3606 " fill="none" id="apoint1085-Object\Product\Assets\Association" style="stroke:#696969;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="40.0399" y="754.9789">0..*</text><!--MD5=[42e230c9d1b48cda5966f8433cfeb0c2]
-link apoint1085 to Object\Product\Assets--><path d="M10.3,502.6406 C21.79,502.6406 33.28,502.6406 44.77,502.6406 " fill="none" id="apoint1085-Object\Product\Assets" style="stroke:#696969;stroke-width:1.0;"/><!--MD5=[6551021703b6c372f0e759701668b25e]
-reverse link Object\Product to Object\Product\Usps--><path codeLine="85" d="M435.83,111.7306 C479.06,124.8206 528.18,141.7506 571,161.6406 C599.79,175.0106 629.91,193.3306 654.46,209.5306 " fill="none" id="Object\Product-backto-Object\Product\Usps" style="stroke:#696969;stroke-width:1.0;"/><polygon fill="#696969" points="423.21,107.9606,427.8111,113.5131,434.7061,111.4015,430.105,105.8491,423.21,107.9606" style="stroke:#696969;stroke-width:1.0;"/><polygon fill="#000000" points="611.5642,172.8581,604.5076,166.4819,602.1074,171.8474,611.5642,172.8581" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28" x="616" y="176.1357">usps</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="431.0295" y="106.8169">0..*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="621.1419" y="198.8562">0..5</text><!--MD5=[5e438d6d2aa5b8fb4c6e7dca97609a1f]
+link Object\Product to Asset\Image--><path codeLine="82" d="M305.41,131.6806 C298.08,155.1506 289.82,183.6306 284,209.6406 C271.34,266.2106 262.77,334.3106 259.07,366.9106 " fill="none" id="Object\Product-Asset\Image-1" style="stroke:#696969;stroke-width:1.0;"/><polygon fill="#000000" points="288.0336,252.7221,292.6654,244.4156,286.8983,243.2796,288.0336,252.7221" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="42" x="298" y="253.1357">images</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="281.6708" y="153.4837">0..*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="236.7406" y="356.1373">0..*</text><!--MD5=[98d40d10f6b1adff6f647271713df2d8]
+link Object\Product to apoint1246--><path d="M220.74,120.0106 C197.75,131.3806 174.41,145.2706 155,161.6406 C34.07,263.6306 9.81,483.5606 8.1,500.5906 " fill="none" id="Object\Product-apoint1246" style="stroke:#696969;stroke-width:1.0;"/><polygon fill="#000000" points="56.5612,329.1813,63.5386,322.7186,58.4074,319.8516,56.5612,329.1813" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="68" y="330.1357">assets</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="192.917" y="119.7142">0..*</text><!--MD5=[e1e66a4a27a534919ee2cc4f7c2d813e]
+link apoint1246 to Object\Product\Assets\Association--><path d="M8.09,504.8906 C9.03,517.2306 17.23,618.3706 40,696.6406 C48.09,724.4606 63.17,755.5506 70.21,769.3606 " fill="none" id="apoint1246-Object\Product\Assets\Association" style="stroke:#696969;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="40.0399" y="754.9789">0..*</text><!--MD5=[9de4e5e3cafb6460819650a14837ff40]
+link apoint1246 to Object\Product\Assets--><path d="M10.3,502.6406 C21.79,502.6406 33.28,502.6406 44.77,502.6406 " fill="none" id="apoint1246-Object\Product\Assets" style="stroke:#696969;stroke-width:1.0;"/><!--MD5=[6551021703b6c372f0e759701668b25e]
+reverse link Object\Product to Object\Product\Usps--><path codeLine="85" d="M435.83,111.7306 C479.06,124.8206 528.18,141.7506 571,161.6406 C599.79,175.0106 629.91,193.3306 654.46,209.5306 " fill="none" id="Object\Product-backto-Object\Product\Usps" style="stroke:#696969;stroke-width:1.0;"/><polygon fill="#696969" points="423.21,107.9606,427.8111,113.5131,434.7061,111.4015,430.105,105.8491,423.21,107.9606" style="stroke:#696969;stroke-width:1.0;"/><polygon fill="#000000" points="611.5642,172.8581,604.5076,166.4819,602.1074,171.8474,611.5642,172.8581" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28" x="616" y="176.1357">usps</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="431.0998" y="106.8169">1..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="621.1419" y="198.8562">0..5</text><!--MD5=[f1a9b41a0dd06a04b3e881414ec93cb2]
 @startuml
 
 hide empty attributes
@@ -56,7 +56,7 @@ class "Asset" as Asset <<asset>> {
 
 
 class "Category" as Object\Category {
-    **name**: varchar[190] / input
+    **name**: varchar[190] / input 
 }
 
 
@@ -66,11 +66,11 @@ class "Color" as Object\Color {
 
 
 class "Product" as Object\Product {
-    **gtin**: varchar[190] / input
+    **gtin**: varchar[190] / input 
     **name**: varchar[190] / input <&globe>
     **description**: text / wysiwyg <&globe>
-    **length**: float / quantityValue [m/cm/mm]
-    **width**: float / quantityValue [cm/m/mm]
+    **length**: float / quantityValue [m/cm/mm] 
+    **width**: float / quantityValue [cm/m/mm] 
 }
 
 
@@ -85,13 +85,13 @@ class "Document" as Asset\Document <<asset>> {
 
 
 class "Assets" as Object\Product\Assets <<relation>> {
-    **doctype**:  select
+    **doctype**:  select 
 }
 
 
 class "Usps" as Object\Product\Usps <<block>> {
-    **title**: varchar[190] / input
-    **description**: text / wysiwyg
+    **title**: varchar[190] / input 
+    **description**: text / wysiwyg 
 }
 
 
@@ -106,7 +106,7 @@ Object\Product "0..*" - - - "1..1" Asset\Image : heroImage >
 Object\Product "0..*" - - - "0..*" Asset\Image : images >
 Object\Product "0..*" - - - - "0..*" Object\Product\Assets\Association : assets >
 (Object\Product,Object\Product\Assets\Association) - - Object\Product\Assets
-Object\Product "0..*" *- - "0..5" Object\Product\Usps : usps >
+Object\Product "1..1" *- - "0..5" Object\Product\Usps : usps >
 
 @enduml
 

@@ -37,6 +37,8 @@ class BlockGenerator extends AbstractGenerator implements GeneratorInterface
         $this->relations = [];
 
         $relation = $this->generateRelation($namespace);
+        $relation->setLocalMinMultiplicity(1);
+        $relation->setLocalMaxMultiplicity(1);
         $relation->setForeignMaxMultiplicity($this->definition->getMaxItems() ?: null);
         $relation->setForeignClass($class);
         $relation->setType(RelationInterface::TYPE_COMPOSITION);

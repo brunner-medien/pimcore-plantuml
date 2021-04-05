@@ -182,7 +182,7 @@ Object\Product "0..*" --- "1..1" Asset\Image : heroImage >
 Object\Product "0..*" --- "0..*" Asset\Image : images >
 Object\Product "0..*" ---- "0..*" Object\Product\Assets\Association : assets >
 (Object\Product,Object\Product\Assets\Association) -- Object\Product\Assets
-Object\Product "0..*" *-- "0..5" Object\Product\Usps : usps >
+Object\Product "1..1" *-- "0..5" Object\Product\Usps : usps >
 
 @enduml
 ```
