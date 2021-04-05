@@ -29,11 +29,6 @@ class GeneratorService implements GeneratorServiceInterface
     protected $registry;
 
     /**
-     * @var string
-     */
-    protected $configDirectory;
-
-    /**
      * @var ConfigurationServiceInterface
      */
     protected $configurationService;
@@ -71,8 +66,6 @@ class GeneratorService implements GeneratorServiceInterface
         $this->configurationService = $configurationService;
         $this->filesystem = $filesystem;
         $this->twig = $twig;
-
-        $this->configDirectory = PIMCORE_PRIVATE_VAR . '/bundles/PlantUmlBundle/config';
     }
 
     /**
