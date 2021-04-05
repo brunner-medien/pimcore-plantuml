@@ -72,20 +72,20 @@ Non-object classes have their own stereotypes and are displayed in different col
 
 ## Association classes
 When a relation allows multiple objects (or document / asset types), things get slightly more complicated.
-There is no "standard" way to visualize such a relation in a class diagram. PlantUmlBundle creates a so  
+There is no "standard" way to visualize such a relation in a class diagram. PlantUmlBundle creates a so 
 called "association class" - an anonymous class visualized by a diamond shape. 
 The allowed classes then "realize" this association class, hence have an association of type Realization. 
 This probably may not be pure standard UML, but again helps to visualize your relations as correct as possible. 
 
 
-### Relation classes
+## Relation classes
 Relations of type "Advanced many-to-many" also create a dedicated class in between the two related classes. 
 These "relation classes" have their own stereotype "relation".
 
 
-### Generalization associations
+## Generalization associations
 Generalization associations are created for Documents and Assets and their subtypes (like Image, Video, Archive
-etc for Asset).
+etc).
 
 
 ## Example
