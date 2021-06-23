@@ -32,6 +32,8 @@ All Pimcore native data types are supported, namely:
 ### Installation
 Nothing fancy here, just install via composer and enable via Pimcore backend or console command:
 
+`$ composer req brunner-medien/pimcore-plantuml`
+
 `$ bin/console pimcore:bundle:enable PlantUmlBundle`
 
 ## Usage
