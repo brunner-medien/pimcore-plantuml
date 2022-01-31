@@ -96,14 +96,13 @@ class PlantUmlController extends AdminController
     }
 
     /**
-     * @param Request $request
      * @param ConfigurationServiceInterface $configurationService
      *
      * @return JsonResponse
      *
      * @Route("/templates_list", name="plantuml_admin_templates_list", methods={"GET"})
      */
-    public function listTemplatesAction(Request $request, ConfigurationServiceInterface $configurationService)
+    public function listTemplatesAction(ConfigurationServiceInterface $configurationService)
     {
         $templates = [];
 
@@ -154,7 +153,7 @@ class PlantUmlController extends AdminController
      *
      * @return JsonResponse
      *
-     * @Route("/config_delete", name="plantuml_admin_config_delete", methods={"GET"})
+     * @Route("/config_delete", name="plantuml_admin_config_delete", methods={"POST"})
      */
     public function deleteConfigAction(Request $request, ConfigurationServiceInterface $configurationService)
     {
@@ -298,7 +297,7 @@ class PlantUmlController extends AdminController
     {
         $requestData = null;
 
-        if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+        if (str_starts_with($request->headers->get('Content-Type'), 'application/json')) {
             $content = $request->getContent();
             if (!empty($content)) {
                 $requestData = json_decode($content, true);
