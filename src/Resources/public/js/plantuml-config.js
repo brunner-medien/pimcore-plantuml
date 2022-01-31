@@ -252,7 +252,7 @@ PlantUml.Config = Class.create({
                     readOnly: true,
                     id: this.panelId + '_preview',
                     border: false,
-                    value: 'Hint: Select one or more classes from the "Object" namespace as seed. '
+                    emptyText: 'Hint: Select one or more classes from the "Object" namespace as seed. '
                         + 'These seeds along with all related classes become part of your class diagram.'
                 }
             ],

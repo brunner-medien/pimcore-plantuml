@@ -9,6 +9,7 @@ use PlantUmlBundle\Model\ModelInterface;
 use Pimcore\Bundle\AdminBundle\Controller\AdminController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class PlantUmlController extends AdminController
 {
@@ -19,6 +20,8 @@ class PlantUmlController extends AdminController
      * @param ConfigurationServiceInterface $configurationService
      *
      * @return JsonResponse
+     *
+     * @Route("/generate", name="plantuml_admin_generate", methods={"GET"})
      */
     public function generateAction(
         Request $request,
@@ -52,6 +55,8 @@ class PlantUmlController extends AdminController
      * @param ConfigurationServiceInterface $configurationService
      *
      * @return JsonResponse
+     *
+     * @Route("/config_get", name="plantuml_admin_config_get", methods={"GET"})
      */
     public function getConfigAction(
         Request $request,
@@ -95,6 +100,8 @@ class PlantUmlController extends AdminController
      * @param ConfigurationServiceInterface $configurationService
      *
      * @return JsonResponse
+     *
+     * @Route("/templates_list", name="plantuml_admin_templates_list", methods={"GET"})
      */
     public function listTemplatesAction(Request $request, ConfigurationServiceInterface $configurationService)
     {
@@ -122,6 +129,8 @@ class PlantUmlController extends AdminController
      * @param ConfigurationServiceInterface $configurationService
      *
      * @return JsonResponse
+     *
+     * @Route("/config_list", name="plantuml_admin_config_list", methods={"GET"})
      */
     public function listConfigAction(Request $request, ConfigurationServiceInterface $configurationService)
     {
@@ -144,6 +153,8 @@ class PlantUmlController extends AdminController
      * @param ConfigurationServiceInterface $configurationService
      *
      * @return JsonResponse
+     *
+     * @Route("/config_delete", name="plantuml_admin_config_delete", methods={"GET"})
      */
     public function deleteConfigAction(Request $request, ConfigurationServiceInterface $configurationService)
     {
@@ -169,6 +180,8 @@ class PlantUmlController extends AdminController
      * @param ConfigurationServiceInterface $configurationService
      *
      * @return JsonResponse
+     *
+     * @Route("/config_create", name="plantuml_admin_config_create", methods={"POST"})
      */
     public function createConfigAction(Request $request, ConfigurationServiceInterface $configurationService)
     {
@@ -194,6 +207,8 @@ class PlantUmlController extends AdminController
      * @param ConfigurationServiceInterface $configurationService
      *
      * @return JsonResponse
+     *
+     * @Route("/config_save", name="plantuml_admin_config_save", methods={"POST"})
      */
     public function saveConfigAction(Request $request, ConfigurationServiceInterface $configurationService)
     {

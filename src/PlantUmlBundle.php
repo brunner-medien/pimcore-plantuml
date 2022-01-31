@@ -27,7 +27,7 @@ class PlantUmlBundle extends AbstractPimcoreBundle
     /**
      * @return string
      */
-    protected function getComposerPackageName()
+    protected function getComposerPackageName(): string
     {
         return self::PACKAGE_NAME;
     }
