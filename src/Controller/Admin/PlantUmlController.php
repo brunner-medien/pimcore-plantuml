@@ -10,6 +10,7 @@ use Pimcore\Bundle\AdminBundle\Controller\AdminController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use function Jawira\PlantUml\encodep;
 
 class PlantUmlController extends AdminController
 {
@@ -31,6 +32,8 @@ class PlantUmlController extends AdminController
     {
         $success = true;
         $message = null;
+        $puml = '';
+        $renderUrl = '';
 
         try {
             $this->checkAdminUser();
@@ -42,10 +45,17 @@ class PlantUmlController extends AdminController
             $message = $e->getMessage();
         }
 
+        try {
+            $renderUrl = sprintf("%s%s", $configurationService->getRenderUrl(), encodep($puml));
+        } catch (\Exception $e) {
+            // silently ignore
+        }
+
         return new JsonResponse((object) [
             'puml' => $puml,
             'success' => $success,
-            'message' => $message
+            'message' => $message,
+            'renderUrl' => $renderUrl
         ]);
     }
 

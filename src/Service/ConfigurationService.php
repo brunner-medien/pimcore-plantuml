@@ -64,6 +64,14 @@ class ConfigurationService implements ConfigurationServiceInterface
     }
 
     /**
+     * @return string
+     */
+    public function getRenderUrl()
+    {
+        return (string) $this->configuration['render_url'];
+    }
+
+    /**
      * @return array
      */
     public function listConfig(): array

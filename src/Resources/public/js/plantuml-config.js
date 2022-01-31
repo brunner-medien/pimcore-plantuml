@@ -3,6 +3,7 @@ PlantUml.Config = Class.create({
     initialize: function(panelId, name) {
         this.panelId = panelId;
         this.name = name;
+        this.renderUrl = '';
 
         this.initStores();
         this.buildPanels();
@@ -266,9 +267,11 @@ PlantUml.Config = Class.create({
             items: [this.classFieldPanel, this.formPanel, this.previewPanel],
             fbar: [
                 {
+                    id: this.panelId + '_copy_clipboard',
                     type: 'button',
                     text: 'Copy to Clipboard',
                     iconCls: 'pimcore_icon_text',
+                    disabled: true,
                     handler: function() {
                         try {
                             var el = Ext.getCmp(this.panelId + '_preview')
@@ -281,6 +284,20 @@ PlantUml.Config = Class.create({
                             el.select();
                             document.execCommand('copy');
                             document.body.removeChild(el);
+                        } catch (e) {
+                            // sorry...
+                        }
+                    }.bind(this)
+                },
+                {
+                    id: this.panelId + '_render',
+                    type: 'button',
+                    text: 'Render',
+                    iconCls: 'pimcore_icon_image',
+                    disabled: true,
+                    handler: function() {
+                        try {
+                            window.open(this.renderUrl);
                         } catch (e) {
                             // sorry...
                         }
@@ -375,7 +392,13 @@ PlantUml.Config = Class.create({
                 if (resp && resp.success) {
                     pimcore.helpers.showNotification('Success', 'PUML Generated', 'success');
                     Ext.getCmp(this.panelId + '_preview').setValue(resp.puml);
+                    this.renderUrl = resp.renderUrl;
+                    Ext.getCmp(this.panelId + '_render').enable();
+                    Ext.getCmp(this.panelId + '_copy_clipboard').enable();
                 } else {
+                    Ext.getCmp(this.panelId + '_preview').setValue('');
+                    Ext.getCmp(this.panelId + '_render').disable();
+                    Ext.getCmp(this.panelId + '_copy_clipboard').disable();
                     Ext.Msg.alert('Error', resp.message ? resp.message : 'Generation failed');
                 }
             }.bind(this),

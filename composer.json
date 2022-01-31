@@ -28,8 +28,7 @@
     }
   },
   "require": {
-    "symfony/symfony": "^4|^5",
-    "pimcore/pimcore": "^6",
-    "php" : "^7.3"
+    "pimcore/pimcore": "^10.0",
+    "jawira/plantuml-encoding": "^1.0"
   }
 }

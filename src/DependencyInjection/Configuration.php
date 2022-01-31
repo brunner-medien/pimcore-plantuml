@@ -26,6 +26,10 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                     ->end()
+                ->end()
+                ->scalarNode('render_url')
+                    ->defaultValue('https://www.plantuml.com/plantuml/uml/')
+                    ->info('The URL of the PlantUML server. Enter your local one, otherwise plantuml.com is used.')
                 ->end();
 
         return $treeBuilder;

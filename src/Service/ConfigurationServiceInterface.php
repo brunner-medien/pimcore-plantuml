@@ -27,6 +27,11 @@ interface ConfigurationServiceInterface
     public function getTemplatePath(string $templateName);
 
     /**
+     * @return string
+     */
+    public function getRenderUrl();
+
+    /**
      * @return array
      */
     public function listConfig();
