@@ -3,55 +3,42 @@
 namespace PlantUmlBundle\Service;
 
 use PlantUmlBundle\Model;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\Yaml\Yaml;
+use Pimcore\Model\Tool\SettingsStore;
 
 class ConfigurationService implements ConfigurationServiceInterface
 {
 
     /**
-     * @var Model\FactoryInterface;
-     */
-    protected $modelFactory;
-
-    /**
      * @var string
      */
-    protected $configDirectory;
+    const IDENTIFIER = 'plantuml';
 
     /**
-     * @var Filesystem
+     * @var Model\FactoryInterface;
      */
-    protected $filesystem;
+    protected Model\FactoryInterface $modelFactory;
 
     /**
      * @var array
      */
-    protected $config;
+    protected array $configuration = [];
 
     /**
      * @param Model\FactoryInterface $modelFactory
-     * @param Filesystem $filesystem
      */
-    public function __construct(
-        Model\FactoryInterface $modelFactory,
-        Filesystem $filesystem
-    )
+    public function __construct(Model\FactoryInterface $modelFactory)
     {
         $this->modelFactory = $modelFactory;
-        $this->filesystem = $filesystem;
-        $this->configDirectory = PIMCORE_PRIVATE_VAR . '/bundles/PlantUmlBundle/config';
     }
 
     /**
      * Setter dependency injection
      *
-     * @param array $config
+     * @param array $configuration
      */
-    public function setConfig(array $config)
+    public function setConfig(array $configuration)
     {
-        $this->config = $config;
+        $this->configuration = $configuration;
     }
 
     /**
@@ -59,7 +46,7 @@ class ConfigurationService implements ConfigurationServiceInterface
      */
     public function getTemplates()
     {
-        return $this->config['templates'];
+        return $this->configuration['templates'];
     }
 
     /**
@@ -69,26 +56,25 @@ class ConfigurationService implements ConfigurationServiceInterface
      */
     public function getTemplatePath(string $templateName)
     {
-        if (!array_key_exists($templateName, $this->config['templates'])) {
+        if (!array_key_exists($templateName, $this->configuration['templates'])) {
             throw new \Exception('Template has no path specified');
         }
 
-        return $this->config['templates'][$templateName]['path'];
+        return $this->configuration['templates'][$templateName]['path'];
     }
 
     /**
      * @return array
      */
-    public function listConfig()
+    public function listConfig(): array
     {
         $configs = [];
-        $finder = new Finder();
 
+        $ids = SettingsStore::getIdsByScope(self::IDENTIFIER);
         try {
-            $finder->files()->in($this->getConfigDirectory())->name('*.yml');
-            foreach ($finder as $file) {
+            foreach ($ids as $id) {
                 $configs[] = [
-                    'name' => $file->getBasename('.yml')
+                    'name' => $this->getConfigName($id)
                 ];
             }
         } catch (\Exception $e) {
@@ -103,17 +89,18 @@ class ConfigurationService implements ConfigurationServiceInterface
      * @return Model\ConfigInterface
      * @throws \Exception
      */
-    public function getConfig(string $name)
+    public function getConfig(string $name): Model\ConfigInterface
     {
         $this->checkConfigName($name);
 
-        $configFile = sprintf('%s/%s.yml', $this->getConfigDirectory(), $name);
-        if (!$this->filesystem->exists($configFile)) {
+        $id = $this->getConfigId($name);
+        if (!$settings = SettingsStore::get($id, self::IDENTIFIER)) {
             throw new \Exception('Configuration does not exist');
         }
+        $configString = $settings->getData();
 
         $config = $this->modelFactory->buildConfig();
-        $config->fromArray((array) Yaml::parse(file_get_contents($configFile)));
+        $config->fromArray((array) json_decode($configString, true));
 
         return $config;
     }
@@ -126,11 +113,12 @@ class ConfigurationService implements ConfigurationServiceInterface
     {
         $this->checkConfigName($name);
 
-        $configFile = sprintf('%s/%s.yml', $this->getConfigDirectory(), $name);
-        if (!$this->filesystem->exists($configFile)) {
+        $id = $this->getConfigId($name);
+        if (!SettingsStore::get($id, self::IDENTIFIER)) {
             throw new \Exception('Configuration does not exist');
         }
-        $this->filesystem->remove($configFile);
+
+        SettingsStore::delete($id, self::IDENTIFIER);
     }
 
     /**
@@ -143,14 +131,16 @@ class ConfigurationService implements ConfigurationServiceInterface
     {
         $this->checkConfigName($name);
 
-        $configFile = sprintf('%s/%s.yml', $this->getConfigDirectory(), $name);
-        if (!$ignoreExisting && $this->filesystem->exists($configFile)) {
+        $id = $this->getConfigId($name);
+        if (!$ignoreExisting && $existing = SettingsStore::get($id, self::IDENTIFIER)) {
             throw new \Exception('Configuration already exists');
         }
 
+        // normalize config
         $config = $this->modelFactory->buildConfig();
         $config->fromArray($payload);
-        $this->filesystem->dumpFile($configFile, Yaml::dump($config->toArray()));
+
+        SettingsStore::set($id, json_encode($config->toArray()), 'string', self::IDENTIFIER);
     }
 
     /**
@@ -164,16 +154,14 @@ class ConfigurationService implements ConfigurationServiceInterface
         }
     }
 
-    /**
-     * @return string
-     */
-    protected function getConfigDirectory()
+    protected function getConfigId(string $name)
     {
-        if ($this->filesystem->exists($this->configDirectory)) {
-            $this->filesystem->mkdir($this->configDirectory);
-        }
+        return sprintf("%s:%s", self::IDENTIFIER, $name);
+    }
 
-        return $this->configDirectory;
+    protected function getConfigName(string $id)
+    {
+        return substr($id, strlen(self::IDENTIFIER) + 1);
     }
 
 }
