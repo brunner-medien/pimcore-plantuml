@@ -1,33 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Structure;
 
+use Pimcore\Model\DataObject\ClassDefinition\Data\Classificationstore;
+use Pimcore\Model\DataObject\Classificationstore\GroupConfig;
+use Pimcore\Model\DataObject\Classificationstore\StoreConfig;
 use PlantUmlBundle\Generator\AbstractGenerator;
 use PlantUmlBundle\Generator\GeneratorInterface;
 use PlantUmlBundle\Generator\Traits\AssociationClassTrait;
 use PlantUmlBundle\Model\AbstractModel;
 use PlantUmlBundle\Model\ModelInterface;
 use PlantUmlBundle\Model\RelationInterface;
-use Pimcore\Model\DataObject\ClassDefinition\Data\Classificationstore;
-use Pimcore\Model\DataObject\Classificationstore\GroupConfig;
-use Pimcore\Model\DataObject\Classificationstore\StoreConfig;
 
 /**
  * @property Classificationstore $definition
  */
 class ClassificationStoreGenerator extends AbstractGenerator implements GeneratorInterface
 {
-
     use AssociationClassTrait;
 
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false)
     {
         $storeId = $this->definition->getStoreId();
-        if (!$storeConfig = StoreConfig::getById($storeId)) {
+        if (! $storeConfig = StoreConfig::getById($storeId)) {
             return;
         }
 
@@ -39,11 +39,11 @@ class ClassificationStoreGenerator extends AbstractGenerator implements Generato
             if (
                 empty($this->definition->getAllowedGroupIds())
                     ||
-                in_array($groupId, $this->definition->getAllowedGroupIds())
+                in_array($groupId, $this->definition->getAllowedGroupIds(), true)
             ) {
                 $allowedClasses[] = [
                     'namespace' => [ModelInterface::CLASS_CLASSIFICATION],
-                    'class' => AbstractModel::generateClassificationGroupName($groupId)
+                    'class' => AbstractModel::generateClassificationGroupName($groupId),
                 ];
             }
         }
@@ -60,5 +60,4 @@ class ClassificationStoreGenerator extends AbstractGenerator implements Generato
             $this->processAllowedClasses($namespace, $relation, $allowedClasses, $active);
         }
     }
-
 }

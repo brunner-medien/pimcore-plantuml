@@ -1,18 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Model;
 
 interface ClassInterface extends ModelInterface
 {
-
     /**
      * @return string
      */
     public function getTitle();
 
-    /**
-     * @param string $title
-     */
     public function setTitle(string $title);
 
     /**
@@ -25,9 +23,6 @@ interface ClassInterface extends ModelInterface
      */
     public function getIsActive();
 
-    /**
-     * @param bool $active
-     */
     public function setIsActive(bool $active);
 
     /**
@@ -35,9 +30,6 @@ interface ClassInterface extends ModelInterface
      */
     public function getIsAssociationClass();
 
-    /**
-     * @param bool $associationClass
-     */
     public function setIsAssociationClass(bool $associationClass);
 
     /**
@@ -45,9 +37,6 @@ interface ClassInterface extends ModelInterface
      */
     public function getFields();
 
-    /**
-     * @param FieldInterface $field
-     */
     public function addField(FieldInterface $field);
 
     /**
@@ -55,9 +44,6 @@ interface ClassInterface extends ModelInterface
      */
     public function getRelations();
 
-    /**
-     * @param RelationInterface $relation
-     */
     public function addRelation(RelationInterface $relation);
 
     /**
@@ -65,9 +51,6 @@ interface ClassInterface extends ModelInterface
      */
     public function getGeneralizeClass();
 
-    /**
-     * @param ClassInterface|null $class
-     */
     public function setGeneralizeClass(ClassInterface $class = null);
 
     /**
@@ -76,18 +59,12 @@ interface ClassInterface extends ModelInterface
     public function getRealizeClasses();
 
     /**
-     * @param ClassInterface[]
+     * @param ClassInterface[] $classes
      */
     public function setRealizeClasses(array $classes);
 
-    /**
-     * @param ClassInterface $class
-     */
     public function addRealizeClass(ClassInterface $class);
 
-    /**
-     * @param ClassInterface $class
-     */
     public function removeRealizeClass(ClassInterface $class);
 
     /**
@@ -95,9 +72,5 @@ interface ClassInterface extends ModelInterface
      */
     public function getStereotype();
 
-    /**
-     * @param string $stereotype
-     */
     public function setStereotype(string $stereotype);
-
 }

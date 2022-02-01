@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle;
 
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
@@ -8,25 +10,18 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class PlantUmlBundle extends AbstractPimcoreBundle
 {
-
     use PackageVersionTrait;
 
     /**
      * @var string
      */
-    const PACKAGE_NAME = 'brunner-medien/pimcore-plantuml';
+    public const PACKAGE_NAME = 'brunner-medien/pimcore-plantuml';
 
-    /**
-     * @param ContainerBuilder $container
-     */
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
     }
 
-    /**
-     * @return string
-     */
     protected function getComposerPackageName(): string
     {
         return self::PACKAGE_NAME;
@@ -53,5 +48,4 @@ class PlantUmlBundle extends AbstractPimcoreBundle
             '/bundles/plantuml/js/plantuml-config.js',
         ];
     }
-
 }

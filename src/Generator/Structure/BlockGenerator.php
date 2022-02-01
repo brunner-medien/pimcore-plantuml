@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Structure;
 
+use Pimcore\Model\DataObject\ClassDefinition\Data\Block;
 use PlantUmlBundle\Generator\AbstractGenerator;
 use PlantUmlBundle\Generator\GeneratorInterface;
 use PlantUmlBundle\Generator\Traits\FieldDefinitionTrait;
-use Pimcore\Model\DataObject\ClassDefinition\Data\Block;
 use PlantUmlBundle\Model\ModelInterface;
 use PlantUmlBundle\Model\RelationInterface;
 
@@ -14,12 +16,10 @@ use PlantUmlBundle\Model\RelationInterface;
  */
 class BlockGenerator extends AbstractGenerator implements GeneratorInterface
 {
-
     use FieldDefinitionTrait;
 
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false)
     {
@@ -43,5 +43,4 @@ class BlockGenerator extends AbstractGenerator implements GeneratorInterface
         $relation->setForeignClass($class);
         $relation->setType(RelationInterface::TYPE_COMPOSITION);
     }
-
 }

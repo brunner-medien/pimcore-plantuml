@@ -1,19 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Field;
 
-use PlantUmlBundle\Generator\GeneratorInterface;
 use Pimcore\Model\DataObject\ClassDefinition\Data;
+use PlantUmlBundle\Generator\GeneratorInterface;
 
 /**
  * @property Data $definition
  */
 class DefaultGenerator extends AbstractFieldGenerator implements GeneratorInterface
 {
-
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false)
     {
@@ -33,8 +33,8 @@ class DefaultGenerator extends AbstractFieldGenerator implements GeneratorInterf
         if (in_array($fieldType, [
             'numeric',
             'quantityValue',
-            'slider'
-        ])) {
+            'slider',
+        ], true)) {
             $signed = $this->check('unsigned') ? 'unsigned ' : '';
 
             if (true === $this->check('integer')) {
@@ -52,8 +52,8 @@ class DefaultGenerator extends AbstractFieldGenerator implements GeneratorInterf
             'textarea',
             'inputQuantityValue',
             'wysiwyg',
-            'password'
-        ])) {
+            'password',
+        ], true)) {
             if ($length = $this->check('columnLength')) {
                 // square brackets - otherwise would be interpreted as method:
                 return 'varchar[' . $length . ']';
@@ -65,17 +65,15 @@ class DefaultGenerator extends AbstractFieldGenerator implements GeneratorInterf
     }
 
     /**
-     * @param string $property
      * @return mixed
      */
     protected function check(string $property)
     {
         $getter = 'get' . ucfirst($property);
-        if (!method_exists($this->definition, $getter)) {
+        if (! method_exists($this->definition, $getter)) {
             return null;
         }
 
         return $this->definition->$getter();
     }
-
 }

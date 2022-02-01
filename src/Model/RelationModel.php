@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Model;
 
 class RelationModel extends AbstractModel implements RelationInterface
 {
-
     /**
      * @var string
      */
@@ -73,9 +74,6 @@ class RelationModel extends AbstractModel implements RelationInterface
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     */
     public function setTitle(string $title)
     {
         $this->title = $title;
@@ -89,9 +87,6 @@ class RelationModel extends AbstractModel implements RelationInterface
         return $this->type;
     }
 
-    /**
-     * @param string $type
-     */
     public function setType(string $type)
     {
         $this->type = $type;
@@ -105,9 +100,6 @@ class RelationModel extends AbstractModel implements RelationInterface
         return $this->localClass;
     }
 
-    /**
-     * @param ClassInterface $class
-     */
     public function setLocalClass(ClassInterface $class)
     {
         $this->localClass = $class;
@@ -121,9 +113,6 @@ class RelationModel extends AbstractModel implements RelationInterface
         return $this->foreignClass;
     }
 
-    /**
-     * @param ClassInterface $class
-     */
     public function setForeignClass(ClassInterface $class)
     {
         $this->foreignClass = $class;
@@ -137,17 +126,11 @@ class RelationModel extends AbstractModel implements RelationInterface
         return $this->foreignName;
     }
 
-    /**
-     * @param string|null $foreignName
-     */
     public function setForeignName(string $foreignName = null)
     {
         $this->foreignName = $foreignName;
     }
 
-    /**
-     * @param string|null $foreignTitle
-     */
     public function setForeignTitle(string $foreignTitle = null)
     {
         $this->foreignTitle = $foreignTitle;
@@ -161,9 +144,6 @@ class RelationModel extends AbstractModel implements RelationInterface
         return $this->relationClass;
     }
 
-    /**
-     * @param ClassInterface $class
-     */
     public function setRelationClass(ClassInterface $class)
     {
         $this->relationClass = $class;
@@ -177,9 +157,6 @@ class RelationModel extends AbstractModel implements RelationInterface
         return $this->localMinMultiplicity;
     }
 
-    /**
-     * @param int $multiplicity
-     */
     public function setLocalMinMultiplicity(int $multiplicity)
     {
         $this->localMinMultiplicity = $multiplicity;
@@ -193,9 +170,6 @@ class RelationModel extends AbstractModel implements RelationInterface
         return $this->localMaxMultiplicity;
     }
 
-    /**
-     * @param int|null $multiplicity
-     */
     public function setLocalMaxMultiplicity(int $multiplicity = null)
     {
         $this->localMaxMultiplicity = $multiplicity;
@@ -209,9 +183,6 @@ class RelationModel extends AbstractModel implements RelationInterface
         return $this->foreignMinMultiplicity;
     }
 
-    /**
-     * @param int $multiplicity
-     */
     public function setForeignMinMultiplicity(int $multiplicity)
     {
         $this->foreignMinMultiplicity = $multiplicity;
@@ -225,9 +196,6 @@ class RelationModel extends AbstractModel implements RelationInterface
         return $this->foreignMaxMultiplicity;
     }
 
-    /**
-     * @param int|null $multiplicity
-     */
     public function setForeignMaxMultiplicity(int $multiplicity = null)
     {
         $this->foreignMaxMultiplicity = $multiplicity;
@@ -241,12 +209,8 @@ class RelationModel extends AbstractModel implements RelationInterface
         return $this->localized;
     }
 
-    /**
-     * @param bool $localized
-     */
     public function setLocalized(bool $localized)
     {
         $this->localized = $localized;
     }
-
 }

@@ -1,31 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Service;
 
-use PlantUmlBundle\Model;
 use Pimcore\Model\Tool\SettingsStore;
+use PlantUmlBundle\Model;
 
 class ConfigurationService implements ConfigurationServiceInterface
 {
-
     /**
      * @var string
      */
-    const IDENTIFIER = 'plantuml';
+    public const IDENTIFIER = 'plantuml';
 
     /**
      * @var Model\FactoryInterface;
      */
     protected Model\FactoryInterface $modelFactory;
 
-    /**
-     * @var array
-     */
     protected array $configuration = [];
 
-    /**
-     * @param Model\FactoryInterface $modelFactory
-     */
     public function __construct(Model\FactoryInterface $modelFactory)
     {
         $this->modelFactory = $modelFactory;
@@ -33,8 +28,6 @@ class ConfigurationService implements ConfigurationServiceInterface
 
     /**
      * Setter dependency injection
-     *
-     * @param array $configuration
      */
     public function setConfig(array $configuration)
     {
@@ -50,13 +43,12 @@ class ConfigurationService implements ConfigurationServiceInterface
     }
 
     /**
-     * @param string $templateName
      * @return string
      * @throws \Exception
      */
     public function getTemplatePath(string $templateName)
     {
-        if (!array_key_exists($templateName, $this->configuration['templates'])) {
+        if (! array_key_exists($templateName, $this->configuration['templates'])) {
             throw new \Exception('Template has no path specified');
         }
 
@@ -71,9 +63,6 @@ class ConfigurationService implements ConfigurationServiceInterface
         return (string) $this->configuration['render_url'];
     }
 
-    /**
-     * @return array
-     */
     public function listConfig(): array
     {
         $configs = [];
@@ -82,7 +71,7 @@ class ConfigurationService implements ConfigurationServiceInterface
         try {
             foreach ($ids as $id) {
                 $configs[] = [
-                    'name' => $this->getConfigName($id)
+                    'name' => $this->getConfigName($id),
                 ];
             }
         } catch (\Exception $e) {
@@ -93,8 +82,6 @@ class ConfigurationService implements ConfigurationServiceInterface
     }
 
     /**
-     * @param string $name
-     * @return Model\ConfigInterface
      * @throws \Exception
      */
     public function getConfig(string $name): Model\ConfigInterface
@@ -102,7 +89,7 @@ class ConfigurationService implements ConfigurationServiceInterface
         $this->checkConfigName($name);
 
         $id = $this->getConfigId($name);
-        if (!$settings = SettingsStore::get($id, self::IDENTIFIER)) {
+        if (! $settings = SettingsStore::get($id, self::IDENTIFIER)) {
             throw new \Exception('Configuration does not exist');
         }
         $configString = $settings->getData();
@@ -114,7 +101,6 @@ class ConfigurationService implements ConfigurationServiceInterface
     }
 
     /**
-     * @param string $name
      * @throws \Exception
      */
     public function deleteConfig(string $name)
@@ -122,7 +108,7 @@ class ConfigurationService implements ConfigurationServiceInterface
         $this->checkConfigName($name);
 
         $id = $this->getConfigId($name);
-        if (!SettingsStore::get($id, self::IDENTIFIER)) {
+        if (! SettingsStore::get($id, self::IDENTIFIER)) {
             throw new \Exception('Configuration does not exist');
         }
 
@@ -130,9 +116,6 @@ class ConfigurationService implements ConfigurationServiceInterface
     }
 
     /**
-     * @param string $name
-     * @param array $payload
-     * @param bool $ignoreExisting
      * @throws \Exception
      */
     public function saveConfig(string $name, array $payload, bool $ignoreExisting)
@@ -140,7 +123,7 @@ class ConfigurationService implements ConfigurationServiceInterface
         $this->checkConfigName($name);
 
         $id = $this->getConfigId($name);
-        if (!$ignoreExisting && $existing = SettingsStore::get($id, self::IDENTIFIER)) {
+        if (! $ignoreExisting && $existing = SettingsStore::get($id, self::IDENTIFIER)) {
             throw new \Exception('Configuration already exists');
         }
 
@@ -152,12 +135,11 @@ class ConfigurationService implements ConfigurationServiceInterface
     }
 
     /**
-     * @param $name
      * @throws \Exception
      */
-    public function checkConfigName($name)
+    public function checkConfigName(string $name)
     {
-        if (!is_string($name) || !preg_match('/^[0-9a-zA-Z_\-]+$/', $name)) {
+        if (! is_string($name) || ! preg_match('/^[0-9a-zA-Z_\-]+$/', $name)) {
             throw new \Exception('Illegal config name');
         }
     }
@@ -171,5 +153,4 @@ class ConfigurationService implements ConfigurationServiceInterface
     {
         return substr($id, strlen(self::IDENTIFIER) + 1);
     }
-
 }

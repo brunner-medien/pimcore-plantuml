@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Relation;
 
+use Pimcore\Model\DataObject\ClassDefinition\Data\AdvancedManyToManyRelation;
 use PlantUmlBundle\Generator\GeneratorInterface;
 use PlantUmlBundle\Generator\Traits\AssociationClassTrait;
 use PlantUmlBundle\Model\ClassInterface;
-use Pimcore\Model\DataObject\ClassDefinition\Data\AdvancedManyToManyRelation;
 use PlantUmlBundle\Model\ModelInterface;
 
 /**
@@ -13,12 +15,10 @@ use PlantUmlBundle\Model\ModelInterface;
  */
 class AdvancedManyToManyGenerator extends AbstractRelationGenerator implements GeneratorInterface
 {
-
     use AssociationClassTrait;
 
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false)
     {
@@ -38,8 +38,6 @@ class AdvancedManyToManyGenerator extends AbstractRelationGenerator implements G
     }
 
     /**
-     * @param array $namespace
-     * @param bool $active
      * @return ClassInterface
      */
     protected function generateRelationClass(array $namespace, bool $active)
@@ -60,5 +58,4 @@ class AdvancedManyToManyGenerator extends AbstractRelationGenerator implements G
 
         return $relationClass;
     }
-
 }

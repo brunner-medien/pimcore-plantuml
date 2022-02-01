@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -7,10 +9,6 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-
-    /**
-     * {@inheritdoc}
-     */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder('plant_uml');
@@ -34,5 +32,4 @@ class Configuration implements ConfigurationInterface
 
         return $treeBuilder;
     }
-
 }

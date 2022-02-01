@@ -1,19 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\ValueList;
 
-use PlantUmlBundle\Generator\GeneratorInterface;
 use Pimcore\Model\DataObject\ClassDefinition\Data\MultiSelect;
+use PlantUmlBundle\Generator\GeneratorInterface;
 
 /**
  * @property MultiSelect $definition
  */
 class MultiSelectGenerator extends AbstractListGenerator implements GeneratorInterface
 {
-
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false)
     {
@@ -24,5 +24,4 @@ class MultiSelectGenerator extends AbstractListGenerator implements GeneratorInt
             $field->addValue($option['key'], $option['value']);
         }
     }
-
 }

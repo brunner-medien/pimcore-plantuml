@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Model;
 
 abstract class AbstractModel
 {
-
     /**
      * @var string
      */
@@ -16,8 +17,6 @@ abstract class AbstractModel
     protected $namespace = [];
 
     /**
-     * @param array $namespace
-     * @param string $name
      * @return string
      */
     public static function generateNamespaceName(array $namespace, string $name)
@@ -26,10 +25,9 @@ abstract class AbstractModel
     }
 
     /**
-     * @param $groupId
      * @return string
      */
-    public static function generateClassificationGroupName($groupId)
+    public static function generateClassificationGroupName(string $groupId)
     {
         return implode('_', [ModelInterface::CLASS_CLASSIFICATION_GROUP, $groupId]);
     }
@@ -42,9 +40,6 @@ abstract class AbstractModel
         return self::generateNamespaceName($this->namespace, $this->name);
     }
 
-    /**
-     * @param string $name
-     */
     public function setName(string $name)
     {
         $this->name = $name;
@@ -58,9 +53,6 @@ abstract class AbstractModel
         return $this->name;
     }
 
-    /**
-     * @param array $namespace
-     */
     public function setNamespace(array $namespace)
     {
         $this->namespace = $namespace;
@@ -73,5 +65,4 @@ abstract class AbstractModel
     {
         return $this->namespace;
     }
-
 }

@@ -1,22 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Model;
 
 interface RelationInterface extends ModelInterface
 {
+    public const TYPE_ASSOCIATION = 'ASSOCIATION';
 
-    const TYPE_ASSOCIATION = 'ASSOCIATION';
-
-    const TYPE_COMPOSITION = 'COMPOSITION';
+    public const TYPE_COMPOSITION = 'COMPOSITION';
 
     /**
      * @return string
      */
     public function getTitle();
 
-    /**
-     * @param string $title
-     */
     public function setTitle(string $title);
 
     /**
@@ -24,9 +22,6 @@ interface RelationInterface extends ModelInterface
      */
     public function getType();
 
-    /**
-     * @param string $type
-     */
     public function setType(string $type);
 
     /**
@@ -34,9 +29,6 @@ interface RelationInterface extends ModelInterface
      */
     public function getLocalClass();
 
-    /**
-     * @param ClassInterface $class
-     */
     public function setLocalClass(ClassInterface $class);
 
     /**
@@ -44,9 +36,6 @@ interface RelationInterface extends ModelInterface
      */
     public function getForeignClass();
 
-    /**
-     * @param ClassInterface $class
-     */
     public function setForeignClass(ClassInterface $class);
 
     /**
@@ -54,14 +43,8 @@ interface RelationInterface extends ModelInterface
      */
     public function getForeignName();
 
-    /**
-     * @param string|null $foreignName
-     */
     public function setForeignName(string $foreignName = null);
 
-    /**
-     * @param string|null $foreignTitle
-     */
     public function setForeignTitle(string $foreignTitle = null);
 
     /**
@@ -69,9 +52,6 @@ interface RelationInterface extends ModelInterface
      */
     public function getRelationClass();
 
-    /**
-     * @param ClassInterface $class
-     */
     public function setRelationClass(ClassInterface $class);
 
     /**
@@ -79,9 +59,6 @@ interface RelationInterface extends ModelInterface
      */
     public function getLocalMinMultiplicity();
 
-    /**
-     * @param int $multiplicity
-     */
     public function setLocalMinMultiplicity(int $multiplicity);
 
     /**
@@ -89,9 +66,6 @@ interface RelationInterface extends ModelInterface
      */
     public function getLocalMaxMultiplicity();
 
-    /**
-     * @param int|null $multiplicity
-     */
     public function setLocalMaxMultiplicity(int $multiplicity = null);
 
     /**
@@ -99,9 +73,6 @@ interface RelationInterface extends ModelInterface
      */
     public function getForeignMinMultiplicity();
 
-    /**
-     * @param int $multiplicity
-     */
     public function setForeignMinMultiplicity(int $multiplicity);
 
     /**
@@ -109,9 +80,6 @@ interface RelationInterface extends ModelInterface
      */
     public function getForeignMaxMultiplicity();
 
-    /**
-     * @param int|null $multiplicity
-     */
     public function setForeignMaxMultiplicity(int $multiplicity = null);
 
     /**
@@ -119,9 +87,5 @@ interface RelationInterface extends ModelInterface
      */
     public function getLocalized();
 
-    /**
-     * @param bool $localized
-     */
     public function setLocalized(bool $localized);
-
 }

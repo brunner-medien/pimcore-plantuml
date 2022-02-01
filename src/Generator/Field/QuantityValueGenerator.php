@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Field;
 
 use Pimcore\Model\DataObject\ClassDefinition\Data\QuantityValue;
@@ -10,10 +12,8 @@ use Pimcore\Model\DataObject\QuantityValue\Unit;
  */
 class QuantityValueGenerator extends DefaultGenerator
 {
-
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false)
     {
@@ -27,5 +27,4 @@ class QuantityValueGenerator extends DefaultGenerator
             }
         }
     }
-
 }

@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Model;
 
 class FieldModel extends AbstractModel implements FieldInterface
 {
-
     /**
      * @var string
      */
@@ -68,9 +69,6 @@ class FieldModel extends AbstractModel implements FieldInterface
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     */
     public function setTitle(string $title)
     {
         $this->title = $title;
@@ -84,9 +82,6 @@ class FieldModel extends AbstractModel implements FieldInterface
         return $this->fieldType;
     }
 
-    /**
-     * @param string $fieldType
-     */
     public function setFieldType(string $fieldType)
     {
         $this->fieldType = $fieldType;
@@ -100,9 +95,6 @@ class FieldModel extends AbstractModel implements FieldInterface
         return $this->dataType;
     }
 
-    /**
-     * @param string $dataType
-     */
     public function setDataType(string $dataType)
     {
         $this->dataType = $dataType;
@@ -116,9 +108,6 @@ class FieldModel extends AbstractModel implements FieldInterface
         return $this->localized;
     }
 
-    /**
-     * @param bool $localized
-     */
     public function setLocalized(bool $localized)
     {
         $this->localized = $localized;
@@ -132,9 +121,6 @@ class FieldModel extends AbstractModel implements FieldInterface
         return $this->hidden;
     }
 
-    /**
-     * @param bool $hidden
-     */
     public function setHidden(bool $hidden)
     {
         $this->hidden = $hidden;
@@ -148,9 +134,6 @@ class FieldModel extends AbstractModel implements FieldInterface
         return $this->required;
     }
 
-    /**
-     * @param bool $required
-     */
     public function setRequired(bool $required)
     {
         $this->required = $required;
@@ -164,9 +147,6 @@ class FieldModel extends AbstractModel implements FieldInterface
         return $this->units;
     }
 
-    /**
-     * @param string $unit
-     */
     public function addUnit(string $unit)
     {
         $this->units[$unit] = $unit;
@@ -180,9 +160,6 @@ class FieldModel extends AbstractModel implements FieldInterface
         return $this->hasUnits;
     }
 
-    /**
-     * @param bool $hasUnits
-     */
     public function setHasUnits(bool $hasUnits)
     {
         $this->hasUnits = $hasUnits;
@@ -196,10 +173,6 @@ class FieldModel extends AbstractModel implements FieldInterface
         return $this->values;
     }
 
-    /**
-     * @param string $key
-     * @param string $value
-     */
     public function addValue(string $key, string $value)
     {
         $this->values[$key] = $value;
@@ -213,17 +186,11 @@ class FieldModel extends AbstractModel implements FieldInterface
         return $this->hasValues;
     }
 
-    /**
-     * @param bool $hasValues
-     */
     public function setHasValues(bool $hasValues)
     {
         $this->hasValues = $hasValues;
     }
 
-    /**
-     * @param RelationInterface $relation
-     */
     public function setRelation(RelationInterface $relation)
     {
         $this->relation = $relation;
@@ -244,5 +211,4 @@ class FieldModel extends AbstractModel implements FieldInterface
     {
         return $this->relation;
     }
-
 }

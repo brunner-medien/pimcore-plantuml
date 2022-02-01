@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Model;
 
 class ClassModel extends AbstractModel implements ClassInterface
 {
-
     /**
      * @var string
      */
@@ -53,9 +54,6 @@ class ClassModel extends AbstractModel implements ClassInterface
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     */
     public function setTitle(string $title)
     {
         $this->title = $title;
@@ -66,7 +64,7 @@ class ClassModel extends AbstractModel implements ClassInterface
      */
     public function getIsSeedable()
     {
-        return (count($this->namespace) === 1 && $this->namespace[0] === ModelInterface::CLASS_OBJECT);
+        return count($this->namespace) === 1 && $this->namespace[0] === ModelInterface::CLASS_OBJECT;
     }
 
     /**
@@ -77,9 +75,6 @@ class ClassModel extends AbstractModel implements ClassInterface
         return $this->active;
     }
 
-    /**
-     * @param bool $active
-     */
     public function setIsActive(bool $active)
     {
         $this->active = $active;
@@ -93,9 +88,6 @@ class ClassModel extends AbstractModel implements ClassInterface
         return $this->associationClass;
     }
 
-    /**
-     * @param bool $associationClass
-     */
     public function setIsAssociationClass(bool $associationClass)
     {
         $this->associationClass = $associationClass;
@@ -109,9 +101,6 @@ class ClassModel extends AbstractModel implements ClassInterface
         return $this->fields;
     }
 
-    /**
-     * @param FieldInterface $field
-     */
     public function addField(FieldInterface $field)
     {
         $this->fields[] = $field;
@@ -125,9 +114,6 @@ class ClassModel extends AbstractModel implements ClassInterface
         return $this->relations;
     }
 
-    /**
-     * @param RelationInterface $relation
-     */
     public function addRelation(RelationInterface $relation)
     {
         $this->relations[] = $relation;
@@ -141,9 +127,6 @@ class ClassModel extends AbstractModel implements ClassInterface
         return $this->generalizeClass;
     }
 
-    /**
-     * @param ClassInterface|null $class
-     */
     public function setGeneralizeClass(ClassInterface $class = null)
     {
         $this->generalizeClass = $class;
@@ -158,24 +141,18 @@ class ClassModel extends AbstractModel implements ClassInterface
     }
 
     /**
-     * @param ClassInterface[]
+     * @param ClassInterface[] $classes
      */
     public function setRealizeClasses(array $classes)
     {
         $this->realizeClasses = $classes;
     }
 
-    /**
-     * @param ClassInterface $class
-     */
     public function addRealizeClass(ClassInterface $class)
     {
         $this->realizeClasses[$class->getNamespaceName()] = $class;
     }
 
-    /**
-     * @param ClassInterface $class
-     */
     public function removeRealizeClass(ClassInterface $class)
     {
         unset($this->realizeClasses[$class->getNamespaceName()]);
@@ -189,12 +166,8 @@ class ClassModel extends AbstractModel implements ClassInterface
         return $this->stereotype;
     }
 
-    /**
-     * @param string $stereotype
-     */
     public function setStereotype(string $stereotype)
     {
         $this->stereotype = $stereotype;
     }
-
 }

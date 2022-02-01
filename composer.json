@@ -30,5 +30,10 @@
   "require": {
     "pimcore/pimcore": "^10.0",
     "jawira/plantuml-encoding": "^1.0"
+  },
+  "require-dev": {
+    "symplify/easy-coding-standard": "^10.0",
+    "phpstan/phpstan": "^1.4",
+    "phpstan/phpstan-symfony": "^1.1"
   }
 }

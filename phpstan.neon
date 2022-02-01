@@ -1,0 +1,13 @@
+includes:
+    - '%currentWorkingDirectory%/vendor/phpstan/phpstan-symfony/extension.neon'
+
+parameters:
+
+    level: 3
+
+    paths:
+        - src
+    reportUnmatchedIgnoredErrors: false
+
+    scanFiles:
+        - '%currentWorkingDirectory%/vendor/pimcore/pimcore/lib/helper-functions.php'

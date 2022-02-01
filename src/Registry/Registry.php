@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Registry;
 
 use PlantUmlBundle\Model\AbstractModel;
-use PlantUmlBundle\Model\FactoryInterface;
 use PlantUmlBundle\Model\ClassInterface;
+use PlantUmlBundle\Model\FactoryInterface;
 use PlantUmlBundle\Model\FieldInterface;
 use PlantUmlBundle\Model\RelationInterface;
 
 class Registry implements RegistryInterface
 {
-
     /**
      * @var FactoryInterface
      */
@@ -31,32 +32,23 @@ class Registry implements RegistryInterface
      */
     protected $relations = [];
 
-    /**
-     * @param FactoryInterface $factory
-     */
     public function __construct(FactoryInterface $factory)
     {
         $this->factory = $factory;
     }
 
-    /**
-     * @return void
-     */
     public function reset()
     {
         $this->classes = $this->fields = $this->relations = [];
     }
 
     /**
-     * @param array $namespace
-     * @param string $name
-     *
      * @return ClassInterface
      */
     public function getClass(array $namespace, string $name)
     {
         $id = AbstractModel::generateNamespaceName($namespace, $name);
-        if (!array_key_exists($id, $this->classes)) {
+        if (! array_key_exists($id, $this->classes)) {
             $class = $this->factory->buildClass();
             $class->setNamespace($namespace);
             $class->setName($name);
@@ -67,15 +59,12 @@ class Registry implements RegistryInterface
     }
 
     /**
-     * @param array $namespace
-     * @param string $name
-     *
      * @return FieldInterface
      */
     public function getField(array $namespace, string $name)
     {
         $id = AbstractModel::generateNamespaceName($namespace, $name);
-        if (!array_key_exists($id, $this->fields)) {
+        if (! array_key_exists($id, $this->fields)) {
             $field = $this->factory->buildField();
             $field->setNamespace($namespace);
             $field->setName($name);
@@ -86,15 +75,12 @@ class Registry implements RegistryInterface
     }
 
     /**
-     * @param array $namespace
-     * @param string $name
-     *
      * @return RelationInterface
      */
     public function getRelation(array $namespace, string $name)
     {
         $id = AbstractModel::generateNamespaceName($namespace, $name);
-        if (!array_key_exists($id, $this->relations)) {
+        if (! array_key_exists($id, $this->relations)) {
             $relation = $this->factory->buildRelation();
             $relation->setNamespace($namespace);
             $relation->setName($name);
@@ -119,5 +105,4 @@ class Registry implements RegistryInterface
     {
         return $this->relations;
     }
-
 }

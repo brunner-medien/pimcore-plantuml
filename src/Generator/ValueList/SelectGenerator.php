@@ -1,19 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\ValueList;
 
-use PlantUmlBundle\Generator\GeneratorInterface;
 use Pimcore\Model\DataObject\ClassDefinition\Data\Select;
+use PlantUmlBundle\Generator\GeneratorInterface;
 
 /**
  * @property Select $definition
  */
 class SelectGenerator extends AbstractListGenerator implements GeneratorInterface
 {
-
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false)
     {
@@ -24,5 +24,4 @@ class SelectGenerator extends AbstractListGenerator implements GeneratorInterfac
             $field->addValue($option['key'], $option['value']);
         }
     }
-
 }

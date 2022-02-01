@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Asset;
 
+use Pimcore\Model\DataObject\ClassDefinition\Data\Image;
 use PlantUmlBundle\Generator\GeneratorInterface;
 use PlantUmlBundle\Model\ModelInterface;
-use Pimcore\Model\DataObject\ClassDefinition\Data\Image;
 
 /**
  * @property Image $definition
  */
 class ImageGalleryGenerator extends AbstractAssetGenerator implements GeneratorInterface
 {
-
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false)
     {
@@ -27,5 +27,4 @@ class ImageGalleryGenerator extends AbstractAssetGenerator implements GeneratorI
 
         $this->generateRelationField($namespace, $relation);
     }
-
 }

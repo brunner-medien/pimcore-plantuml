@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator;
 
 use PlantUmlBundle\Model\FieldInterface;
@@ -10,28 +12,21 @@ interface GeneratorInterface
 {
     /**
      * Setter dependency injection
-     *
-     * @param object $definition
      */
     public function setDefinition(object $definition);
 
     /**
      * Setter dependency injection
-     *
-     * @param RegistryInterface $registry
      */
     public function setRegistry(RegistryInterface $registry);
 
     /**
      * Setter dependency injection
-     *
-     * @param FactoryInterface $factory
      */
     public function setFactory(FactoryInterface $factory);
 
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false);
 
@@ -44,5 +39,4 @@ interface GeneratorInterface
      * @return RelationInterface[]
      */
     public function getRelations();
-
 }

@@ -1,18 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Model;
 
 interface FieldInterface extends ModelInterface
 {
-
     /**
      * @return string
      */
     public function getTitle();
 
-    /**
-     * @param string $title
-     */
     public function setTitle(string $title);
 
     /**
@@ -20,9 +18,6 @@ interface FieldInterface extends ModelInterface
      */
     public function getFieldType();
 
-    /**
-     * @param string $fieldType
-     */
     public function setFieldType(string $fieldType);
 
     /**
@@ -30,9 +25,6 @@ interface FieldInterface extends ModelInterface
      */
     public function getDataType();
 
-    /**
-     * @param string $dataType
-     */
     public function setDataType(string $dataType);
 
     /**
@@ -40,9 +32,6 @@ interface FieldInterface extends ModelInterface
      */
     public function getLocalized();
 
-    /**
-     * @param bool $localized
-     */
     public function setLocalized(bool $localized);
 
     /**
@@ -50,9 +39,6 @@ interface FieldInterface extends ModelInterface
      */
     public function getHidden();
 
-    /**
-     * @param bool $hidden
-     */
     public function setHidden(bool $hidden);
 
     /**
@@ -60,20 +46,13 @@ interface FieldInterface extends ModelInterface
      */
     public function getRequired();
 
-    /**
-     * @param bool $required
-     */
     public function setRequired(bool $required);
-
 
     /**
      * @return string[]
      */
     public function getUnits();
 
-    /**
-     * @param string $unit
-     */
     public function addUnit(string $unit);
 
     /**
@@ -81,9 +60,6 @@ interface FieldInterface extends ModelInterface
      */
     public function hasUnits();
 
-    /**
-     * @param bool $hasUnits
-     */
     public function setHasUnits(bool $hasUnits);
 
     /**
@@ -91,10 +67,6 @@ interface FieldInterface extends ModelInterface
      */
     public function getValues();
 
-    /**
-     * @param string $key
-     * @param string $value
-     */
     public function addValue(string $key, string $value);
 
     /**
@@ -102,14 +74,8 @@ interface FieldInterface extends ModelInterface
      */
     public function hasValues();
 
-    /**
-     * @param bool $hasValues
-     */
     public function setHasValues(bool $hasValues);
 
-    /**
-     * @param RelationInterface $relation
-     */
     public function setRelation(RelationInterface $relation);
 
     /**
@@ -121,5 +87,4 @@ interface FieldInterface extends ModelInterface
      * @return RelationInterface|null
      */
     public function getRelation();
-
 }

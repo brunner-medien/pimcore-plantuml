@@ -1,25 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Structure;
 
+use Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks;
 use PlantUmlBundle\Generator\AbstractGenerator;
 use PlantUmlBundle\Generator\GeneratorInterface;
 use PlantUmlBundle\Generator\Traits\AssociationClassTrait;
 use PlantUmlBundle\Model\ModelInterface;
 use PlantUmlBundle\Model\RelationInterface;
-use Pimcore\Model\DataObject\ClassDefinition\Data\Objectbricks;
 
 /**
  * @property Objectbricks $definition
  */
 class ObjectBrickGenerator extends AbstractGenerator implements GeneratorInterface
 {
-
     use AssociationClassTrait;
 
     /**
      * @param string[] $namespace
-     * @param bool $active
      * @throws \Exception
      */
     public function generate(array $namespace, bool $active = false)
@@ -28,7 +28,7 @@ class ObjectBrickGenerator extends AbstractGenerator implements GeneratorInterfa
         foreach ($this->definition->getAllowedTypes() as $allowedType) {
             $allowedClasses[] = [
                 'namespace' => [ModelInterface::CLASS_OBJECT_BRICK],
-                'class' => ucfirst($allowedType)
+                'class' => ucfirst($allowedType),
             ];
         }
 
@@ -45,7 +45,5 @@ class ObjectBrickGenerator extends AbstractGenerator implements GeneratorInterfa
 
             $this->processAllowedClasses($namespace, $relation, $allowedClasses, $active);
         }
-
     }
-
 }

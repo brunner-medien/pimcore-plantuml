@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Model;
 
 class ConfigModel implements ConfigInterface
@@ -69,7 +71,6 @@ class ConfigModel implements ConfigInterface
     }
 
     /**
-     * @param string $classId
      * @return bool
      */
     public function getClassSeed(string $classId)
@@ -78,7 +79,6 @@ class ConfigModel implements ConfigInterface
     }
 
     /**
-     * @param string $classId
      * @return string|null
      */
     public function getClassMode(string $classId)
@@ -110,9 +110,6 @@ class ConfigModel implements ConfigInterface
         return $this->translation ?: ConfigInterface::TRANSLATION_NONE;
     }
 
-    /**
-     * @param array $config
-     */
     public function fromArray(array $config)
     {
         if (array_key_exists('classSeed', $config) && is_array($config['classSeed'])) {
@@ -127,9 +124,9 @@ class ConfigModel implements ConfigInterface
             $this->classMode = [];
             foreach ($config['classMode'] as $id => $classMode) {
                 if (is_string($classMode) && in_array($classMode, [
-                        ConfigInterface::CLASS_MODE_FORCE,
-                        ConfigInterface::CLASS_MODE_SKIP
-                ])) {
+                    ConfigInterface::CLASS_MODE_FORCE,
+                    ConfigInterface::CLASS_MODE_SKIP,
+                ], true)) {
                     $this->classMode[$id] = $classMode;
                 }
             }
@@ -162,7 +159,7 @@ class ConfigModel implements ConfigInterface
         }
 
         if (array_key_exists('ignoreHiddenFields', $config) && is_scalar($config['ignoreHiddenFields'])) {
-            $this->ignoreHiddenFields = !!$config['ignoreHiddenFields'];
+            $this->ignoreHiddenFields = ! ! $config['ignoreHiddenFields'];
         }
     }
 
@@ -182,5 +179,4 @@ class ConfigModel implements ConfigInterface
             'ignoreHiddenFields' => $this->ignoreHiddenFields,
         ];
     }
-
 }

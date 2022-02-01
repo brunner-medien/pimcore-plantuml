@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Service;
 
+use Pimcore\Model\DataObject;
 use PlantUmlBundle\Generator;
 use PlantUmlBundle\Model;
 use PlantUmlBundle\Model\ModelInterface;
 use PlantUmlBundle\Registry\RegistryInterface;
-use Pimcore\Model\DataObject;
 use Symfony\Component\Filesystem\Filesystem;
 use Twig\Environment as Twig;
 
 class GeneratorService implements GeneratorServiceInterface
 {
-
     /**
      * @var Generator\FactoryInterface
      */
@@ -43,14 +44,6 @@ class GeneratorService implements GeneratorServiceInterface
      */
     protected $twig;
 
-    /**
-     * @param Generator\FactoryInterface $generatorFactory
-     * @param Model\FactoryInterface $modelFactory
-     * @param RegistryInterface $registry
-     * @param ConfigurationServiceInterface $configurationService
-     * @param Filesystem $filesystem
-     * @param Twig $twig
-     */
     public function __construct(
         Generator\FactoryInterface $generatorFactory,
         Model\FactoryInterface $modelFactory,
@@ -58,8 +51,7 @@ class GeneratorService implements GeneratorServiceInterface
         ConfigurationServiceInterface $configurationService,
         Filesystem $filesystem,
         Twig $twig
-    )
-    {
+    ) {
         $this->generatorFactory = $generatorFactory;
         $this->modelFactory = $modelFactory;
         $this->registry = $registry;
@@ -69,7 +61,6 @@ class GeneratorService implements GeneratorServiceInterface
     }
 
     /**
-     * @param Model\ConfigInterface|null $config
      * @return RegistryInterface
      */
     public function loadRegistry(Model\ConfigInterface $config = null)
@@ -79,7 +70,8 @@ class GeneratorService implements GeneratorServiceInterface
         $list = new DataObject\ClassDefinition\Listing();
         foreach ($list->getClasses() as $classDefinition) {
             $namespaceName = Model\AbstractModel::generateNamespaceName(
-                [ModelInterface::CLASS_OBJECT], $classDefinition->getName()
+                [ModelInterface::CLASS_OBJECT],
+                $classDefinition->getName()
             );
             $active = $config && $config->getClassSeed($namespaceName);
             $generator = $this->generatorFactory->buildGenerator($classDefinition);
@@ -108,8 +100,6 @@ class GeneratorService implements GeneratorServiceInterface
     }
 
     /**
-     * @param Model\ConfigInterface $config
-     * @param string $name
      * @return string
      * @throws \Exception
      */
@@ -127,7 +117,7 @@ class GeneratorService implements GeneratorServiceInterface
             'relations' => $relations,
             'config' => $config,
             'templatePath' => $templatePath,
-            'translation' => $config->getTranslation()
+            'translation' => $config->getTranslation(),
         ]);
 
         if ($outputPath = $config->getOutputPath()) {
@@ -146,13 +136,12 @@ class GeneratorService implements GeneratorServiceInterface
 
     /**
      * @param Model\ClassInterface[] $classes
-     * @param Model\ConfigInterface $config
      *
      * @return Model\ClassInterface[]
      */
     protected function getFilteredClasses(array $classes, Model\ConfigInterface $config)
     {
-        $filter = function(Model\ClassInterface $class) use ($config) {
+        $filter = function (Model\ClassInterface $class) use ($config) {
             $mode = $config->getClassMode($class->getNamespaceName());
             if ($mode === Model\ConfigInterface::CLASS_MODE_FORCE) {
                 return true;
@@ -170,7 +159,7 @@ class GeneratorService implements GeneratorServiceInterface
             $class->setRealizeClasses($realizeClasses);
 
             if ($generalizeClass = $class->getGeneralizeClass()) {
-                if (!$filter($generalizeClass)) {
+                if (! $filter($generalizeClass)) {
                     $class->setGeneralizeClass(null);
                 }
             }
@@ -185,19 +174,17 @@ class GeneratorService implements GeneratorServiceInterface
      */
     protected function getFilteredRelations(array $relations, array $classes)
     {
-        $filter = function(Model\RelationInterface $relation) use ($classes) {
-            if (!in_array($relation->getLocalClass(), $classes)) {
+        $filter = function (Model\RelationInterface $relation) use ($classes) {
+            if (! in_array($relation->getLocalClass(), $classes, true)) {
                 return false;
             }
-            if (!in_array($relation->getForeignClass(), $classes)) {
+            if (! in_array($relation->getForeignClass(), $classes, true)) {
                 return false;
             }
-
 
             return true;
         };
 
         return array_filter($relations, $filter);
     }
-
 }

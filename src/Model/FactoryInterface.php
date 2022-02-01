@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Model;
 
 interface FactoryInterface
 {
-
     /**
      * @return ClassInterface
      */
@@ -24,5 +25,4 @@ interface FactoryInterface
      * @return ConfigInterface
      */
     public function buildConfig();
-
 }

@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Root;
 
+use Pimcore\Model\DataObject\Fieldcollection\Definition;
 use PlantUmlBundle\Generator\AbstractGenerator;
 use PlantUmlBundle\Generator\GeneratorInterface;
 use PlantUmlBundle\Generator\Traits\FieldDefinitionTrait;
-use Pimcore\Model\DataObject\Fieldcollection\Definition;
 use PlantUmlBundle\Model\ModelInterface;
 
 /**
@@ -13,12 +15,10 @@ use PlantUmlBundle\Model\ModelInterface;
  */
 class FieldCollectionGenerator extends AbstractGenerator implements GeneratorInterface
 {
-
     use FieldDefinitionTrait;
 
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false)
     {
@@ -30,6 +30,4 @@ class FieldCollectionGenerator extends AbstractGenerator implements GeneratorInt
 
         $this->processFieldDefinitions($class, $this->definition->getFieldDefinitions(), $classNamespace, $class->getIsActive());
     }
-
 }
-

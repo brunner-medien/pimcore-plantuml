@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Root;
 
+use Pimcore\Model\DataObject\Classificationstore;
 use PlantUmlBundle\Generator\AbstractGenerator;
 use PlantUmlBundle\Generator\GeneratorInterface;
 use PlantUmlBundle\Model\AbstractModel;
-use Pimcore\Model\DataObject\Classificationstore;
 use PlantUmlBundle\Model\ModelInterface;
 
 /**
@@ -13,10 +15,8 @@ use PlantUmlBundle\Model\ModelInterface;
  */
 class ClassificationGroupGenerator extends AbstractGenerator implements GeneratorInterface
 {
-
     /**
      * @param string[] $namespace
-     * @param bool $active
      * @throws \Exception
      */
     public function generate(array $namespace, bool $active = false)
@@ -45,10 +45,5 @@ class ClassificationGroupGenerator extends AbstractGenerator implements Generato
                 }
             }
         }
-
     }
-
 }
-
-
-

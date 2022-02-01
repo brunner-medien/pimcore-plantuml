@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Controller\Admin;
 
-use PlantUmlBundle\Service\GeneratorServiceInterface;
-use PlantUmlBundle\Service\ConfigurationServiceInterface;
+use Pimcore\Bundle\AdminBundle\Controller\AdminController;
 use PlantUmlBundle\Model\ConfigInterface;
 use PlantUmlBundle\Model\ModelInterface;
-use Pimcore\Bundle\AdminBundle\Controller\AdminController;
+use PlantUmlBundle\Service\ConfigurationServiceInterface;
+use PlantUmlBundle\Service\GeneratorServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,12 +16,7 @@ use function Jawira\PlantUml\encodep;
 
 class PlantUmlController extends AdminController
 {
-
     /**
-     * @param Request $request
-     * @param GeneratorServiceInterface $generatorService
-     * @param ConfigurationServiceInterface $configurationService
-     *
      * @return JsonResponse
      *
      * @Route("/generate", name="plantuml_admin_generate", methods={"GET"})
@@ -28,8 +25,7 @@ class PlantUmlController extends AdminController
         Request $request,
         GeneratorServiceInterface $generatorService,
         ConfigurationServiceInterface $configurationService
-    )
-    {
+    ) {
         $success = true;
         $message = null;
         $puml = '';
@@ -55,15 +51,11 @@ class PlantUmlController extends AdminController
             'puml' => $puml,
             'success' => $success,
             'message' => $message,
-            'renderUrl' => $renderUrl
+            'renderUrl' => $renderUrl,
         ]);
     }
 
     /**
-     * @param Request $request
-     * @param GeneratorServiceInterface $generatorService
-     * @param ConfigurationServiceInterface $configurationService
-     *
      * @return JsonResponse
      *
      * @Route("/config_get", name="plantuml_admin_config_get", methods={"GET"})
@@ -72,14 +64,12 @@ class PlantUmlController extends AdminController
         Request $request,
         GeneratorServiceInterface $generatorService,
         ConfigurationServiceInterface $configurationService
-    )
-    {
+    ) {
         $success = true;
         $message = null;
         $classes = $settings = null;
 
         try {
-
             $this->checkAdminUser();
             $config = $configurationService->getConfig($request->get('name', ''));
 
@@ -91,7 +81,6 @@ class PlantUmlController extends AdminController
 
             $settings = $config->toArray();
             unset($settings['classStates']);
-
         } catch (\Exception $e) {
             $success = false;
             $message = $e->getMessage();
@@ -101,13 +90,11 @@ class PlantUmlController extends AdminController
             'classTree' => $classes,
             'settings' => $settings,
             'success' => $success,
-            'message' => $message
+            'message' => $message,
         ]);
     }
 
     /**
-     * @param ConfigurationServiceInterface $configurationService
-     *
      * @return JsonResponse
      *
      * @Route("/templates_list", name="plantuml_admin_templates_list", methods={"GET"})
@@ -121,7 +108,7 @@ class PlantUmlController extends AdminController
             foreach ($configurationService->getTemplates() as $name => $path) {
                 $templates[] = [
                     'name' => $name,
-                    'value' => $name
+                    'value' => $name,
                 ];
             }
         } catch (\Exception $e) {
@@ -129,14 +116,11 @@ class PlantUmlController extends AdminController
         }
 
         return new JsonResponse((object) [
-            'templates' => $templates
+            'templates' => $templates,
         ]);
     }
 
     /**
-     * @param Request $request
-     * @param ConfigurationServiceInterface $configurationService
-     *
      * @return JsonResponse
      *
      * @Route("/config_list", name="plantuml_admin_config_list", methods={"GET"})
@@ -153,14 +137,11 @@ class PlantUmlController extends AdminController
         }
 
         return new JsonResponse((object) [
-            'config' => $configs
+            'config' => $configs,
         ]);
     }
 
     /**
-     * @param Request $request
-     * @param ConfigurationServiceInterface $configurationService
-     *
      * @return JsonResponse
      *
      * @Route("/config_delete", name="plantuml_admin_config_delete", methods={"POST"})
@@ -180,14 +161,11 @@ class PlantUmlController extends AdminController
 
         return new JsonResponse((object) [
             'success' => $success,
-            'message' => $message
+            'message' => $message,
         ]);
     }
 
     /**
-     * @param Request $request
-     * @param ConfigurationServiceInterface $configurationService
-     *
      * @return JsonResponse
      *
      * @Route("/config_create", name="plantuml_admin_config_create", methods={"POST"})
@@ -207,14 +185,11 @@ class PlantUmlController extends AdminController
 
         return new JsonResponse((object) [
             'success' => $success,
-            'message' => $message
+            'message' => $message,
         ]);
     }
 
     /**
-     * @param Request $request
-     * @param ConfigurationServiceInterface $configurationService
-     *
      * @return JsonResponse
      *
      * @Route("/config_save", name="plantuml_admin_config_save", methods={"POST"})
@@ -235,7 +210,7 @@ class PlantUmlController extends AdminController
 
         return new JsonResponse((object) [
             'success' => $success,
-            'message' => $message
+            'message' => $message,
         ]);
     }
 
@@ -249,14 +224,16 @@ class PlantUmlController extends AdminController
      */
     protected function generateNamespaceTree(array $models)
     {
-        $tree = ['children' => []];
+        $tree = [
+            'children' => [],
+        ];
         foreach ($models as $model) {
             $scope = &$tree;
             foreach (array_merge($model->getNamespace(), [$model->getName()]) as $name) {
-                if (!array_key_exists($name, $scope['children'])) {
+                if (! array_key_exists($name, $scope['children'])) {
                     $scope['children'][$name] = [
                         'model' => null,
-                        'children' => []
+                        'children' => [],
                     ];
                 }
                 $scope = &$scope['children'][$name];
@@ -269,9 +246,6 @@ class PlantUmlController extends AdminController
 
     /**
      * From a tree hierarchy, generate Ext.data.TreeStore data
-     *
-     * @param array $tree
-     * @param ConfigInterface $config
      *
      * @return array
      */
@@ -289,7 +263,7 @@ class PlantUmlController extends AdminController
                 'leaf' => sizeof($children) === 0,
                 'children' => sizeof($children) > 0 ? $children : false,
                 'seed' => $seedable ? $config->getClassSeed($id) : null,
-                'mode' => $config->getClassMode($id)
+                'mode' => $config->getClassMode($id),
             ];
         }
 
@@ -299,8 +273,6 @@ class PlantUmlController extends AdminController
     /**
      * Get payload data from request body or via form data.
      *
-     * @param Request $request
-     *
      * @return array|null
      */
     protected function getRequestPayload(Request $request)
@@ -309,7 +281,7 @@ class PlantUmlController extends AdminController
 
         if (str_starts_with($request->headers->get('Content-Type'), 'application/json')) {
             $content = $request->getContent();
-            if (!empty($content)) {
+            if (! empty($content)) {
                 $requestData = json_decode($content, true);
             }
         } else {
@@ -319,14 +291,10 @@ class PlantUmlController extends AdminController
         return $requestData;
     }
 
-    /**
-     * @return void
-     */
     protected function checkAdminUser()
     {
-        if (!$this->getAdminUser() || !$this->getAdminUser()->isAdmin()) {
+        if (! $this->getAdminUser() || ! $this->getAdminUser()->isAdmin()) {
             throw $this->createAccessDeniedHttpException();
         }
     }
-
 }

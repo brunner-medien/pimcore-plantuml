@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Structure;
 
+use Pimcore\Model\DataObject\ClassDefinition\Data\Localizedfields;
 use PlantUmlBundle\Generator\AbstractGenerator;
 use PlantUmlBundle\Generator\GeneratorInterface;
-use Pimcore\Model\DataObject\ClassDefinition\Data\Localizedfields;
 
 /**
  * @property Localizedfields $definition
  */
 class LocalizedGenerator extends AbstractGenerator implements GeneratorInterface
 {
-
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false)
     {
@@ -28,5 +28,4 @@ class LocalizedGenerator extends AbstractGenerator implements GeneratorInterface
             }
         }
     }
-
 }

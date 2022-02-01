@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Model;
 
 class ModelFactory implements FactoryInterface
 {
-
     /**
      * @return ClassInterface
      */
@@ -36,5 +37,4 @@ class ModelFactory implements FactoryInterface
     {
         return new ConfigModel();
     }
-
 }

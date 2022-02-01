@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Relation;
 
+use Pimcore\Model\DataObject\ClassDefinition\Data\ReverseManyToManyObjectRelation;
 use PlantUmlBundle\Generator\GeneratorInterface;
 use PlantUmlBundle\Model\ModelInterface;
-use Pimcore\Model\DataObject\ClassDefinition\Data\ReverseManyToManyObjectRelation;
 
 /**
  * @property ReverseManyToManyObjectRelation $definition
  */
 class ReverseManyToManyGenerator extends AbstractRelationGenerator implements GeneratorInterface
 {
-
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false)
     {
@@ -33,6 +33,4 @@ class ReverseManyToManyGenerator extends AbstractRelationGenerator implements Ge
             $this->generateRelationField($namespace, $relation);
         }
     }
-
 }
-

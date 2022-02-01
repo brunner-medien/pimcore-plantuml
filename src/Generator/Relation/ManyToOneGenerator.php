@@ -1,22 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Relation;
 
+use Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation;
 use PlantUmlBundle\Generator\GeneratorInterface;
 use PlantUmlBundle\Generator\Traits\AssociationClassTrait;
-use Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation;
 
 /**
  * @property ManyToOneRelation $definition
  */
 class ManyToOneGenerator extends AbstractRelationGenerator implements GeneratorInterface
 {
-
     use AssociationClassTrait;
 
     /**
      * @param string[] $namespace
-     * @param bool $active
      */
     public function generate(array $namespace, bool $active = false)
     {
@@ -29,5 +29,4 @@ class ManyToOneGenerator extends AbstractRelationGenerator implements GeneratorI
 
         $this->generateRelationField($namespace, $relation);
     }
-
 }

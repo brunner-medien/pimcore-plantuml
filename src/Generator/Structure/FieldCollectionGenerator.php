@@ -1,26 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Structure;
 
+use Pimcore\Model\DataObject\ClassDefinition\Data\Fieldcollections;
+use Pimcore\Model\DataObject\Fieldcollection;
 use PlantUmlBundle\Generator\AbstractGenerator;
 use PlantUmlBundle\Generator\GeneratorInterface;
 use PlantUmlBundle\Generator\Traits\AssociationClassTrait;
 use PlantUmlBundle\Model\ModelInterface;
 use PlantUmlBundle\Model\RelationInterface;
-use Pimcore\Model\DataObject\ClassDefinition\Data\Fieldcollections;
-use Pimcore\Model\DataObject\Fieldcollection;
 
 /**
  * @property Fieldcollections $definition
  */
 class FieldCollectionGenerator extends AbstractGenerator implements GeneratorInterface
 {
-
     use AssociationClassTrait;
 
     /**
      * @param string[] $namespace
-     * @param bool $active
      * @throws \Exception
      */
     public function generate(array $namespace, bool $active = false)
@@ -30,7 +30,7 @@ class FieldCollectionGenerator extends AbstractGenerator implements GeneratorInt
             if ($fieldCollection = Fieldcollection\Definition::getByKey($allowedType)) {
                 $allowedClasses[] = [
                     'namespace' => [ModelInterface::CLASS_FIELD_COLLECTION],
-                    'class' => $allowedType
+                    'class' => $allowedType,
                 ];
             }
         }
@@ -45,5 +45,4 @@ class FieldCollectionGenerator extends AbstractGenerator implements GeneratorInt
             $this->processAllowedClasses($namespace, $relation, $allowedClasses, $active);
         }
     }
-
 }

@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator;
 
 use PlantUmlBundle\Registry\RegistryInterface;
 
 class GeneratorFactory implements FactoryInterface
 {
-
     /**
      * @var string[]
      */
@@ -41,16 +42,12 @@ class GeneratorFactory implements FactoryInterface
      */
     protected $registry;
 
-    /**
-     * @param RegistryInterface $registry
-     */
     public function __construct(RegistryInterface $registry)
     {
         $this->registry = $registry;
     }
 
     /**
-     * @param object $definition
      * @return GeneratorInterface|null
      */
     public function buildGenerator(object $definition)
@@ -63,7 +60,7 @@ class GeneratorFactory implements FactoryInterface
             $generatorName = $this->classMap[$classname];
         }
 
-        /* @var GeneratorInterface $generator */
+        /** @var GeneratorInterface $generator */
         $generator = new $generatorName();
 
         // setter dependency injection
@@ -81,5 +78,4 @@ class GeneratorFactory implements FactoryInterface
     {
         return 'PlantUmlBundle\\Generator\\Field\\DefaultGenerator';
     }
-
 }

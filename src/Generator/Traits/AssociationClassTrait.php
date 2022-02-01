@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlantUmlBundle\Generator\Traits;
 
 use PlantUmlBundle\Model\ClassInterface;
@@ -8,12 +10,7 @@ use PlantUmlBundle\Model\RelationInterface;
 
 trait AssociationClassTrait
 {
-
     /**
-     * @param array $namespace
-     * @param RelationInterface $relation
-     * @param array $allowedClasses
-     * @param bool $active
      * @return ClassInterface|null
      */
     protected function processAllowedClasses(array $namespace, RelationInterface $relation, array $allowedClasses, bool $active)
@@ -21,11 +18,9 @@ trait AssociationClassTrait
         $foreignClass = null;
 
         if (count($allowedClasses) === 1) {
-
             $item = $allowedClasses[0];
             $foreignClass = $this->generateClass($item['namespace'], $item['class'], $active);
             $relation->setForeignClass($foreignClass);
-
         } elseif (count($allowedClasses) > 1) {
 
             // watch this:
@@ -47,5 +42,4 @@ trait AssociationClassTrait
 
         return $foreignClass;
     }
-
 }
