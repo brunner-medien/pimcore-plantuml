@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace PlantUmlBundle\Generator\Relation;
 
-use Pimcore\Model\DataObject\ClassDefinition\Data\ReverseManyToManyObjectRelation;
+use Pimcore\Model\DataObject\ClassDefinition\Data\ReverseObjectRelation;
 use PlantUmlBundle\Generator\GeneratorInterface;
 use PlantUmlBundle\Model\ModelInterface;
 
 /**
- * @property ReverseManyToManyObjectRelation $definition
+ * @property ReverseObjectRelation $definition
  */
-class ReverseManyToManyGenerator extends AbstractRelationGenerator implements GeneratorInterface
+class ReverseObjectRelationGenerator extends AbstractRelationGenerator implements GeneratorInterface
 {
     /**
      * @param string[] $namespace

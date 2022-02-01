@@ -29,7 +29,7 @@ class GeneratorFactory implements FactoryInterface
         'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ManyToOneRelation' => 'PlantUmlBundle\\Generator\\Relation\\ManyToOneGenerator',
         'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\AdvancedManyToManyRelation' => 'PlantUmlBundle\\Generator\\Relation\\AdvancedManyToManyGenerator',
         'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\AdvancedManyToManyObjectRelation' => 'PlantUmlBundle\\Generator\\Relation\\AdvancedManyToManyGenerator',
-        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ReverseManyToManyObjectRelation' => 'PlantUmlBundle\\Generator\\Relation\\ReverseManyToManyGenerator',
+        'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\ReverseObjectRelation' => 'PlantUmlBundle\\Generator\\Relation\\ReverseObjectRelationGenerator',
         'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Localizedfields' => 'PlantUmlBundle\\Generator\\Structure\\LocalizedGenerator',
         'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Block' => 'PlantUmlBundle\\Generator\\Structure\\BlockGenerator',
         'Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Fieldcollections' => 'PlantUmlBundle\\Generator\\Structure\\FieldCollectionGenerator',
