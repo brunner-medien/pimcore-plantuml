@@ -1,6 +1,8 @@
 {{ '"' | raw }}
-    {%- if translation == 'none' or class.isAssociationClass or not(class.title) %}
+    {%- if not(class.title) %}
         {{- class.name }}
+    {%- elseif translation == 'none' or class.isAssociationClass %}
+        {{- class.title }}
     {%- else %}
         {{- class.title | trans([], 'admin', translation) | capitalize }}
     {%- endif %}

@@ -16,6 +16,7 @@ interface ModelInterface
     const CLASS_ASSET_IMAGE = 'Image';
     const CLASS_ASSET_VIDEO = 'Video';
 
+    const STEREOTYPE_OBJECT = 'object';
     const STEREOTYPE_DOCUMENT = 'document';
     const STEREOTYPE_ASSET = 'asset';
     const STEREOTYPE_BLOCK = 'block';

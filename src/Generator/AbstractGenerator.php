@@ -144,7 +144,7 @@ abstract class AbstractGenerator implements GeneratorInterface
             }
         }
 
-        // set title and stereotype for assets and documents
+        // set title and stereotype
         $rootName = (count($namespace) === 0) ? $classname : $namespace[0];
         if ($rootName === ModelInterface::CLASS_ASSET) {
 
@@ -155,6 +155,14 @@ abstract class AbstractGenerator implements GeneratorInterface
 
             $class->setTitle($classname);
             $class->setStereotype(ModelInterface::STEREOTYPE_DOCUMENT);
+
+        } elseif ($rootName === ModelInterface::CLASS_OBJECT) {
+
+            // special treating for object folders
+            if ($classname === 'folder') {
+                $class->setTitle(ucfirst($classname));
+                $class->setStereotype(ModelInterface::STEREOTYPE_OBJECT);
+            }
 
         }
 
