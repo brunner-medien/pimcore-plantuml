@@ -53,7 +53,7 @@ class AdvancedManyToManyGenerator extends AbstractRelationGenerator implements G
 
         foreach ($this->definition->getColumns() as $column) {
             $field = $this->registry->getField($relationClassNamespace, $column['key']);
-            $field->setTitle($column['label'] ?: $column['key']);
+            $field->setTitle($column['label'] ?? $column['key']);
             $field->setFieldType($column['type']);
             $relationClass->addField($field);
         }
