@@ -131,6 +131,14 @@ class RelationModel extends AbstractModel implements RelationInterface
         $this->foreignName = $foreignName;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getForeignTitle()
+    {
+        return $this->foreignTitle;
+    }
+
     public function setForeignTitle(string $foreignTitle = null)
     {
         $this->foreignTitle = $foreignTitle;
@@ -213,4 +221,5 @@ class RelationModel extends AbstractModel implements RelationInterface
     {
         $this->localized = $localized;
     }
+
 }

@@ -45,6 +45,11 @@ interface RelationInterface extends ModelInterface
 
     public function setForeignName(string $foreignName = null);
 
+    /**
+     * @return string|null
+     */
+    public function getForeignTitle();
+
     public function setForeignTitle(string $foreignTitle = null);
 
     /**
