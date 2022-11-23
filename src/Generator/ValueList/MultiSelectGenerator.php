@@ -21,7 +21,7 @@ class MultiSelectGenerator extends AbstractListGenerator implements GeneratorInt
         $field->setHasValues(true);
 
         foreach ($this->definition->getOptions() as $option) {
-            $field->addValue($option['key'], $option['value']);
+            $field->addValue($option['key'], (string) $option['value']);
         }
     }
 }
