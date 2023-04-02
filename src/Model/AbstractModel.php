@@ -27,7 +27,7 @@ abstract class AbstractModel
     /**
      * @return string
      */
-    public static function generateClassificationGroupName(string $groupId)
+    public static function generateClassificationGroupName(?int $groupId)
     {
         return implode('_', [ModelInterface::CLASS_CLASSIFICATION_GROUP, $groupId]);
     }
